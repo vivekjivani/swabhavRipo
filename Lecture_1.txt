@@ -1,0 +1,33 @@
+first we learn what is source control or version control, version control or source control is a softwere that keep traking the of users sourse code timeline, that means it stores the who and what kind of changes user made and what are the new files are new added.
+git is a one type of source control softwere, it take the snapshot of all chnages which user made from previous commit, like timeline of updates in source code, and this timeline is known as branch in git and it's name is master.
+there are some commands to remember for some task like to commit change,see status to see log etc.
+and all git command are start from git word example for git status,
+
+1) git init:
+	it is used for initialize the empty git repository.
+2)git status:
+	it is used for see the status of repository.
+3)git log:
+	it is used for see the how many commits are done or chnages done by user.
+4)git add . :
+	it is used for to add or take snapshot of all work done in memory.
+5)git commit -m "message":
+	it is used to add all changes in the disk.
+6)git checkout 'id':
+	it is used to see the timeline point, like at which point what are the contents of file.
+7)git checkout master:
+	it will give you last modification.
+
+here is one important thing that is what if users computer crash, then whole sourse code and the snapshots are lost, all the work will lost, to solve that problem we push our work on clued or server, that will done by the github.
+***command to puch snapshot to github******  
+
+1) first we have to add github repository as remotly in git.
+
+ex: git remote -v 
+ex: git remote add shortname "url"  
+
+	here short name is an identifier for the github repository url.
+2) we have to push all the snapshots.
+
+ex: git push shortname master
+ 
