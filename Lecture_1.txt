@@ -13,6 +13,8 @@ and all git command are start from git word example for git status,
 	it is used for to add or take snapshot of all work done in memory.
 5)git commit -m "message":
 	it is used to add all changes in the disk.
+
+	Note:- if we don't add message then vi shell will be open, press 'i' to enter input after that press 'Esc' to exit the input mode and for quit the 		vi shell enter ':wq'.
 6)git checkout 'id':
 	it is used to see the timeline point, like at which point what are the contents of file.
 7)git checkout master:
