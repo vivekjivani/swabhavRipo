@@ -1,12 +1,14 @@
 package com.techlab.account.test;
 
+import com.tecchlab.account.exceptions.NegativeValueException;
+import com.tecchlab.account.exceptions.NullValueException;
 import com.techlab.account.Account;
 import com.techlab.account.TransactionExcaption;
 
 public class AccountTest {
-	public static void main(String args[]) {
-		Account accountOne = new Account("vivek", 123456789012L, 1000.0);
-		Account accountTwo = new Account("darshan", 567890432122L);
+	public static void main(String args[]) throws NullValueException, NegativeValueException {
+		Account accountOne = new Account("vivek", "123456789012", 1000.0);
+		Account accountTwo = new Account("darshan", "567890432122");
 		displayInfo(accountOne);
 		displayInfo(accountTwo);
 		accountOne.deposit(1000);

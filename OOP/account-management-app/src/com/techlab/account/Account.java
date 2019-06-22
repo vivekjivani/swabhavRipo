@@ -1,18 +1,24 @@
 package com.techlab.account;
 
+import com.tecchlab.account.exceptions.NegativeValueException;
+import com.tecchlab.account.exceptions.NullValueException;
+
 public class Account {
 	private String name;
-	private long accountNumber;
+	private String accountNumber;
 	private double balance;
 	private static double MIN_BALANCE = 500.00;
 
-	public Account(String name, long accountNumber, double balance) {
+	public Account(String name, String accountNumber, double balance) throws NullValueException {
+		if (name == null || accountNumber == null) {
+			throw new NullValueException();
+		}
 		this.name = name;
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 	}
 
-	public Account(String name, long accountNumber) {
+	public Account(String name, String accountNumber) throws NullValueException {
 		this(name, accountNumber, MIN_BALANCE);
 	}
 
@@ -24,11 +30,11 @@ public class Account {
 		this.name = name;
 	}
 
-	public long getAccountNumber() {
+	public String getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(long accountNumber) {
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
@@ -36,21 +42,25 @@ public class Account {
 		return balance;
 	}
 
-	public void setBalance(long balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 
-	public void deposit(double amount) {
+	public void deposit(double amount) throws NegativeValueException {
+		if(amount<0.0) 
+			throw new NegativeValueException();
 		this.balance += amount;
 	}
 
-	public void withdrawal(double amount) {
+	public void withdrawal(double amount) throws NegativeValueException {
 		if (!this.checkTransactionIsSafe(amount))
-			throw new TransactionExcaption("failed");
+			throw new TransactionExcaption();
 		this.balance -= amount;
 	}
 
-	private boolean checkTransactionIsSafe(double amount) {
+	private boolean checkTransactionIsSafe(double amount) throws NegativeValueException {
+		if(amount <0.0)
+			throw new NegativeValueException();
 		if (amount > this.balance)
 			return false;
 		if ((this.balance - amount) < MIN_BALANCE)
@@ -60,8 +70,8 @@ public class Account {
 
 	@Override
 	public String toString() {
-		String s="Name : " + this.getName() + "\n" + "Account number : " + this.getAccountNumber() + "\n" + "Balance : "
-				+ this.getBalance()+"\n"+super.toString();
+		String s = "Name : " + this.getName() + "\n" + "Account number : " + this.getAccountNumber() + "\n"
+				+ "Balance : " + this.getBalance() + "\n" + super.toString();
 		return s;
 	}
 
