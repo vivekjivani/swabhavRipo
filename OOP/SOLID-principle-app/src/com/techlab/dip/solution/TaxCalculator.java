@@ -1,9 +1,9 @@
 package com.techlab.dip.solution;
 
 public class TaxCalculator {
-	private Logger log;
+	private ILoggable log;
 	
-	public TaxCalculator(Logger log) {
+	public TaxCalculator(ILoggable log) {
 		this.log = log;
 	}
 	

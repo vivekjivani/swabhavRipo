@@ -1,6 +1,6 @@
 package com.techlab.dip.solution;
 
-public class FileLogger implements Logger {
+public class FileLogger implements ILoggable {
 
 	@Override
 	public void log(String message) {
