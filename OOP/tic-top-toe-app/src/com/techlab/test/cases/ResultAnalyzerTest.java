@@ -16,12 +16,7 @@ public class ResultAnalyzerTest {
 	public void testCheckGameStatus_RowFilledWithO_ResultShouldBeWin() throws CellIsAlredyMarkedException {
 		Board board = new Board();
 		ResultAnalyzer analyzer = new ResultAnalyzer(board);
-		board.putMarkOnCell(Mark.O, 3);
-		board.putMarkOnCell(Mark.O, 4);
-		board.putMarkOnCell(Mark.O, 5);
-		GameStatus expected = GameStatus.Win;
-		GameStatus actual=analyzer.checkGameStatus();
-		assertEquals(expected, actual);	
+		
 	}
 	
 //	@Test

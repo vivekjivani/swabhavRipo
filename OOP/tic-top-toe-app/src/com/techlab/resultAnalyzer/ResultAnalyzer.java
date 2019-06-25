@@ -1,78 +1,102 @@
 package com.techlab.resultAnalyzer;
 
 import com.techlab.board.Board;
-import com.techlab.enums.GameStatus;
 import com.techlab.enums.Mark;
 
 public class ResultAnalyzer {
 	private Board board;
-	private static int NUMBER_TO_GET_NEXT_ROW = 1;
-	private static int NUMBER_TO_GET_NEXT_COLUMN = 3;
-	private static int NUMBER_OF_ROW = 3;
-	private static int NUMBER_OF_COLUMN = 3;
-	private int[] diagonal1 = { 0, 4, 8 };
-	private int[] diagonal2 = { 2, 4, 6 };
+	private static int SIZE_OF_BOARD = 9;
 
 	public ResultAnalyzer(Board board) {
 		this.board = board;
 	}
 
-	public GameStatus checkGameStatus() {
-		int START_INDEX = 0;
-		for (int index = 0; index < NUMBER_OF_ROW; index += NUMBER_TO_GET_NEXT_COLUMN) {
-			if ((board.getMarkOnCell(START_INDEX) == Mark.O
-					&& board.getMarkOnCell(START_INDEX + NUMBER_TO_GET_NEXT_ROW) == Mark.O
-					&& board.getMarkOnCell(START_INDEX + NUMBER_TO_GET_NEXT_ROW + NUMBER_TO_GET_NEXT_ROW) == Mark.O)
-					|| (board.getMarkOnCell(START_INDEX) == Mark.X
-							&& board.getMarkOnCell(START_INDEX + NUMBER_TO_GET_NEXT_ROW) == Mark.X
-							&& board.getMarkOnCell(
-									START_INDEX + NUMBER_TO_GET_NEXT_ROW + NUMBER_TO_GET_NEXT_ROW) == Mark.X)) {
-				return GameStatus.Win;
-			}
+	// Check for win.....
+	public boolean checkForWin() {
+		if (checkRowForMark(Mark.O)) {
+			return true;
 		}
-		for (int index = 0; index < NUMBER_OF_COLUMN; index += NUMBER_TO_GET_NEXT_ROW) {
-			if ((board.getMarkOnCell(START_INDEX) == Mark.O
-					&& board.getMarkOnCell(START_INDEX + NUMBER_TO_GET_NEXT_COLUMN) == Mark.O
-					&& board.getMarkOnCell(
-							START_INDEX + NUMBER_TO_GET_NEXT_COLUMN + NUMBER_TO_GET_NEXT_COLUMN) == Mark.O)
-					|| (board.getMarkOnCell(START_INDEX) == Mark.X
-							&& board.getMarkOnCell(START_INDEX + NUMBER_TO_GET_NEXT_COLUMN) == Mark.X
-							&& board.getMarkOnCell(
-									START_INDEX + NUMBER_TO_GET_NEXT_COLUMN + NUMBER_TO_GET_NEXT_COLUMN) == Mark.X)) {
-				return GameStatus.Win;
-			}
+		if (checkRowForMark(Mark.X)) {
+			return true;
 		}
-
-		for (int index = 0; index < diagonal1.length; index++) {
-			if (((board.getMarkOnCell(diagonal1[index++]) == Mark.O))
-					&& (board.getMarkOnCell(diagonal1[index++]) == Mark.X)) {
-				return GameStatus.Win;
-			}
+		if (checkColumnForMark(Mark.O)) {
+			return true;
 		}
-		int index = 0;
-		if (board.getMarkOnCell(diagonal1[index++]) == Mark.O && board.getMarkOnCell(diagonal1[index++]) == Mark.O
-				&& board.getMarkOnCell(diagonal1[index]) == Mark.O) {
-			return GameStatus.Win;
+		if (checkColumnForMark(Mark.X)) {
+			return true;
 		}
-		index = 0;
-		if (board.getMarkOnCell(diagonal1[index++]) == Mark.X && board.getMarkOnCell(diagonal1[index++]) == Mark.X
-				&& board.getMarkOnCell(diagonal1[index]) == Mark.X) {
-			return GameStatus.Win;
+		if (checkDiagonalForMark(Mark.O)) {
+			return true;
 		}
-		index = 0;
-		if (board.getMarkOnCell(diagonal2[index++]) == Mark.O && board.getMarkOnCell(diagonal2[index++]) == Mark.O
-				&& board.getMarkOnCell(diagonal2[index]) == Mark.O) {
-			return GameStatus.Win;
+		if (checkDiagonalForMark(Mark.X)) {
+			return true;
 		}
-		index = 0;
-		if (board.getMarkOnCell(diagonal2[index++]) == Mark.X && board.getMarkOnCell(diagonal2[index++]) == Mark.X
-				&& board.getMarkOnCell(diagonal2[index]) == Mark.X) {
-			return GameStatus.Win;
-		}
-
-		if (board.isFilledOut()) {
-			return GameStatus.Draw;
-		}
-		return GameStatus.InProgress;
+		return false;
 	}
+
+	private boolean checkRowForMark(Mark mark) {
+		if (board.getMarkOnCell(0) == mark && board.getMarkOnCell(1) == mark && board.getMarkOnCell(2) == mark) {
+			return true;
+		}
+		if (board.getMarkOnCell(3) == mark && board.getMarkOnCell(4) == mark && board.getMarkOnCell(5) == mark) {
+			return true;
+		}
+		if (board.getMarkOnCell(6) == mark && board.getMarkOnCell(7) == mark && board.getMarkOnCell(8) == mark) {
+			return true;
+		}
+		return false;
+	}
+
+	private boolean checkColumnForMark(Mark mark) {
+		if (board.getMarkOnCell(0) == mark && board.getMarkOnCell(3) == mark && board.getMarkOnCell(6) == mark) {
+			return true;
+		}
+		if (board.getMarkOnCell(1) == mark && board.getMarkOnCell(4) == mark && board.getMarkOnCell(7) == mark) {
+			return true;
+		}
+		if (board.getMarkOnCell(2) == mark && board.getMarkOnCell(5) == mark && board.getMarkOnCell(8) == mark) {
+			return true;
+		}
+		return false;
+	}
+
+	private boolean checkDiagonalForMark(Mark mark) {
+		if (board.getMarkOnCell(0) == mark && board.getMarkOnCell(4) == mark && board.getMarkOnCell(8) == mark) {
+			return true;
+		}
+		if (board.getMarkOnCell(2) == mark && board.getMarkOnCell(4) == mark && board.getMarkOnCell(6) == mark) {
+			return true;
+		}
+		return false;
+	}
+
+	// CheckForDraw
+	public boolean checkForDraw() {
+		if (IsBoardFillOut()) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean IsBoardFillOut() {
+		if((board.getMarkOnCell(0) == Mark.O) | (board.getMarkOnCell(0) == Mark.X) 
+				&& (board.getMarkOnCell(1) == Mark.O) | (board.getMarkOnCell(1) == Mark.X)
+				&& (board.getMarkOnCell(2) == Mark.O) | (board.getMarkOnCell(2) == Mark.X)
+				&& (board.getMarkOnCell(3) == Mark.O) | (board.getMarkOnCell(3) == Mark.X)
+				&& (board.getMarkOnCell(4) == Mark.O) | (board.getMarkOnCell(4) == Mark.X)
+				&& (board.getMarkOnCell(5) == Mark.O) | (board.getMarkOnCell(5) == Mark.X)
+				&& (board.getMarkOnCell(6) == Mark.O) | (board.getMarkOnCell(6) == Mark.X)
+				&& (board.getMarkOnCell(7) == Mark.O) | (board.getMarkOnCell(7) == Mark.X)
+				&& (board.getMarkOnCell(8) == Mark.O) | (board.getMarkOnCell(8) == Mark.X))
+			return true;
+		return false;
+	}
+	
+//	// display board
+//	public void displayBoard() {
+//		for(int index =0 ; index < SIZE_OF_BOARD ; index++) {
+//			System.out.println(board.getMarkOnCell(index));
+//		}
+//	}
+
 }

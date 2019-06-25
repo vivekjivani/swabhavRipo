@@ -17,21 +17,16 @@ public class Board {
 	public void putMarkOnCell(Mark mark, int cellNumber) throws CellIsAlredyMarkedException {
 		cellsArray[cellNumber].setCellState(mark);
 	}
-	
+
 	public Mark getMarkOnCell(int cellNumber) {
 		return cellsArray[cellNumber].getCellState();
 	}
 	
+	public int getBoardSize() {
+		return cellsArray.length;
+	}
+
 	public Cell[] getCellsArray() {
 		return cellsArray;
-	}
-		
-	public boolean isFilledOut(){
-		for (int index = 0; index < NUMBER_OF_CELL; index++) {
-			if(this.getMarkOnCell(index) != Mark.EMPTY) {
-				return true;
-			}
-		}
-		return false;
 	}
 }
