@@ -24,7 +24,6 @@ public class PlayerFrameListner implements ActionListener {
 		Game game = new Game(playerOne, playerrTwo);
 		this.frame.dispose();
 		new GameFrame(game).setVisible(true);
-
 	}
 
 	public static void main(String args[]) throws CellIsAlredyMarkedException {

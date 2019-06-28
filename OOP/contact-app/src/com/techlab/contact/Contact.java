@@ -1,6 +1,8 @@
 package com.techlab.contact;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
 	private String name;
 	private String email;
 	private long phone;
@@ -27,5 +29,9 @@ public class Contact {
 
 	public void setPhone(long phone) {
 		this.phone = phone;
+	}
+	 @Override
+	public String toString() {
+		return name+"\t"+email+"\t"+phone;
 	}
 }
