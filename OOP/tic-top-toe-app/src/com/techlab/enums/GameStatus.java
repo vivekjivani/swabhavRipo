@@ -1,5 +1,5 @@
 package com.techlab.enums;
 
 public enum GameStatus {
-	WIN,DRAW,INPROGRESS; 
+	WIN, DRAW, INPROGRESS;
 }

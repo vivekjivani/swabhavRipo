@@ -21,7 +21,7 @@ public class Board {
 	public Mark getMarkOnCell(int cellNumber) {
 		return cellsArray[cellNumber].getCellState();
 	}
-	
+
 	public int getBoardSize() {
 		return cellsArray.length;
 	}

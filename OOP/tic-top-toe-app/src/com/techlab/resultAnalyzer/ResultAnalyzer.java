@@ -5,8 +5,6 @@ import com.techlab.enums.Mark;
 
 public class ResultAnalyzer {
 	private Board board;
-	private static int SIZE_OF_BOARD = 9;
-
 	public ResultAnalyzer(Board board) {
 		this.board = board;
 	}
@@ -79,7 +77,7 @@ public class ResultAnalyzer {
 	}
 
 	public boolean IsBoardFillOut() {
-		if((board.getMarkOnCell(0) == Mark.O) | (board.getMarkOnCell(0) == Mark.X) 
+		if ((board.getMarkOnCell(0) == Mark.O) | (board.getMarkOnCell(0) == Mark.X)
 				&& (board.getMarkOnCell(1) == Mark.O) | (board.getMarkOnCell(1) == Mark.X)
 				&& (board.getMarkOnCell(2) == Mark.O) | (board.getMarkOnCell(2) == Mark.X)
 				&& (board.getMarkOnCell(3) == Mark.O) | (board.getMarkOnCell(3) == Mark.X)
@@ -91,7 +89,7 @@ public class ResultAnalyzer {
 			return true;
 		return false;
 	}
-	
+
 //	// display board
 //	public void displayBoard() {
 //		for(int index =0 ; index < SIZE_OF_BOARD ; index++) {
