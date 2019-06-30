@@ -19,7 +19,7 @@ public class AddButtonListner implements ActionListener {
 		String name = frame.getNameField();
 		String email = frame.getEmailField();
 		Long phone = Long.parseLong(frame.getPhoneField());
-		
+		//validation code
 		services = new ContactService();
 		services.saveContact(name, email, phone);
 		JOptionPane.showMessageDialog(frame,"Contact Added"); 
