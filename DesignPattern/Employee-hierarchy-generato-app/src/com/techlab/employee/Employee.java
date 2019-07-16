@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import com.techlab.xmlgenerator.XmlGenerator;
+
 public class Employee {
 	private int id;
 	private String name;
@@ -13,12 +15,13 @@ public class Employee {
 	private double salary;
 	private double commision;
 	private int department;
-	private static String space = "";
-	//private static String oldSpace="";
+	private static String level = "";
+	private static XmlGenerator xml;
 	private static HashSet<Employee> employeeList = new HashSet<Employee>();
 	private ArrayList<Employee> reporteesList = new ArrayList<Employee>();
 
-	public Employee() {
+	public Employee(XmlGenerator xml) {
+		this.xml = xml;
 	}
 
 	public Employee(int id, String namea, String designation, int managerId, String datOfJoining, double salary,
@@ -35,7 +38,7 @@ public class Employee {
 	}
 
 	public void addRepotees() {
-		for (Iterator iterator = employeeList.iterator(); iterator.hasNext();) {
+		for (Iterator<Employee> iterator = employeeList.iterator(); iterator.hasNext();) {
 			Employee employee = (Employee) iterator.next();
 			if (this.id == employee.managerId) {
 				this.reporteesList.add(employee);
@@ -43,18 +46,39 @@ public class Employee {
 		}
 	}
 
-	public void displayRepoteeHierarchy() {
-		System.out.println(space+this.id + " " + this.name + " " + this.managerId);
+//	public void displayRepoteeHierarchy() {
+//		//System.out.println(space + this.id + " " + this.name + " " + this.managerId);
+//		xml.generateXml(this.name);
+//		if (!this.reporteesList.isEmpty()) {
+//			for (int i = 0; i < this.reporteesList.size(); i++) {
+//				Employee e = reporteesList.get(i);
+//				space += "\t";
+//				e.displayRepoteeHierarchy();
+//				if (space != "") {
+//					space = space.substring(0, space.length() - 1);
+//				}
+//			}
+//		}
+//
+//	}
+	
+	public void generateXml() {
+		xml.generateStartTag(this.getName(),level);
 		if (!this.reporteesList.isEmpty()) {
-			for (int i = 0; i<this.reporteesList.size(); i++) {
+			for (int i = 0; i < this.reporteesList.size(); i++) {
 				Employee e = reporteesList.get(i);
-				space +="\t";
-				e.displayRepoteeHierarchy();
-				if(space != "") {
-				space = space.substring(0, space.length() - 1);}
+				level += "\t";
+				e.generateXml();
+				if (level != "") {
+					level = level.substring(0, level.length() - 1);
+				}
 			}
 		}
-		
+		xml.generateEndTag(this.getName(),level);
+	}
+	
+	public String getXml() {
+		return xml.getXML();
 	}
 
 	public int getId() {
