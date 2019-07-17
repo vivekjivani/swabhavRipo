@@ -1,5 +1,7 @@
-<h1 [innerHTML]='student.name'></h1>
-<h1 [innerHTML]='student.cgpi'></h1>
-<h1 [innerHTML]='student.location'></h1>
-<h1 [innerHTML]='student.dateOfJoin'></h1>
-<img [src]='student.profilePicture' [height]='height' [width]='width'/>
+<div style="border-style: solid; padding: 10px 20px 10px 20px; margin : 10px">
+    <h1 [innerHTML]='student.name'></h1>
+    <h1 [innerHTML]='student.cgpi'></h1>
+    <h1 [innerHTML]='student.location'></h1>
+    <h1 [innerHTML]='student.dateOfJoin'></h1>
+    <img [src]='student.profilePicture' [style.height.px]='"100"' [style.width.px]='"100"' />
+</div>
