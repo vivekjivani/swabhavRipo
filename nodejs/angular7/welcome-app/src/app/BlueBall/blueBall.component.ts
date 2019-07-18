@@ -12,14 +12,22 @@ export class BallComponent {
     private goalBall: number;
     private status: string = 'Running';
     private gameMove: number = 0;
+    private rules: string[] = ['You Have Olny Three Chance To Find Blue Ball.',
+        'Green Balls Indicate Blue Ball is at above position.',
+        'Red Balls Indicate Blue Ball is at lower position.'];
+    private isRuleHidden = false;
+    private isGameBoardHidden = true;
+    private hidePlayAgain = true;
 
     constructor() {
-        this.init();
+
     }
 
     init() {
+        this.isRuleHidden = true;
+        this.isGameBoardHidden = false;
         for (let index = 0; index < this.numberOfBalls; index++) {
-            this.ballArray.push({ id: index, isGoal: false, color: 'white', isDisabled : false});
+            this.ballArray.push({ id: index, isGoal: false, color: 'white', isDisabled: false });
         }
         this.selectRandomBall();
     }
@@ -56,5 +64,15 @@ export class BallComponent {
         }
         this.status = 'GameOver';
         this.ballArray[this.goalBall].color = 'blue';
+        this.hidePlayAgain = false;
+    }
+
+    restartGame(){
+        for (let index = 0; index < this.numberOfBalls; index++) {
+            this.ballArray[index].isDisabled = false;
+            this.ballArray[index].color = 'white';
+            this.gameMove = 0;
+        }
+        this.selectRandomBall();
     }
 }

@@ -5,7 +5,7 @@
     <p [innerHTML]='student.dateOfJoin'></p>
     <img [src]='student.profilePicture' [style.height.px]='"100"' [style.width.px]='"100"' />
 
-    <input type="text" [ngModel]="student.name" (ngModelChange)="nameChange($event)"/>
+    <input type="text" [ngModel]="student.name" (ngModelChange)="nameChange($event)" />
 
     <p [innerHTML]='student.name'></p>
     <p [innerHTML]='student.cgpa'></p>

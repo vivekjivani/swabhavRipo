@@ -1,8 +1,25 @@
-<div align='center'>
-    <p style="font-size:24px;">{{status}}</p>
+<div [hidden]='isRuleHidden'>
+    <div class="jumbotron">
+        <p class="w3-center" style="font-size : 24px; color : royalblue; font-weight: 100;">Blue Ball Game</p>
+    </div>
+    <div class="w3-container w3-center">
+        <p class="text-info lead" *ngFor='let rule of rules'>{{rule}}</p><br />
+    </div>
+    <div class="container w3-center w3-margin-bottom">
+        <button class="w3-button w3-round-large w3-padding-14 w3-blue" (click)='init()'>Start</button>
+    </div>
+    <div class="jumbotron"></div>
 </div>
-<div>
-    <button [id]='ball.id' [style.background-color]='ball.color' [disabled]='ball.isDisabled'
-        class="w3-button w3-round-large w3-border w3-padding-16 w3-margin w3-border-black"
-        (click)='changeColor($event.target.id)' *ngFor='let ball of ballArray'></button>
+<div [hidden]='isGameBoardHidden'>
+    <div align='center'>
+        <p style="font-size:24px;">{{status}} <span>Moves : {{gameMove}}</span></p>
+    </div>
+    <div>
+        <button [id]='ball.id' [style.background-color]='ball.color' [disabled]='ball.isDisabled'
+            class="w3-button w3-round-large w3-border w3-padding-16 w3-margin w3-border-black"
+            (click)='changeColor($event.target.id)' *ngFor='let ball of ballArray'></button>
+    </div>
+</div>
+<div class="container" [hidden]='hidePlayAgain'>
+    <button (click)='restartGame()' class="w3-button w3-round-large w3-blue">Play agian!</button>
 </div>
