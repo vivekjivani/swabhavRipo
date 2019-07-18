@@ -1,0 +1,8 @@
+<div align='center'>
+    <p style="font-size:24px;">{{status}}</p>
+</div>
+<div>
+    <button [id]='ball.id' [style.background-color]='ball.color' [disabled]='ball.isDisabled'
+        class="w3-button w3-round-large w3-border w3-padding-16 w3-margin w3-border-black"
+        (click)='changeColor($event.target.id)' *ngFor='let ball of ballArray'></button>
+</div>

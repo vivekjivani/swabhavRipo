@@ -6,6 +6,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { StudentComponent } from './student/student.component';
 import { CgpaBedgePipe } from './pipes/cgpaBedge';
 import { MultiBind } from './multiBinding/multiBind.component';
+import { BallComponent } from './BlueBall/blueBall.component';
 
 
 @NgModule({
@@ -13,13 +14,14 @@ import { MultiBind } from './multiBinding/multiBind.component';
     WelcomeComponent,
     StudentComponent,
     CgpaBedgePipe,
-    MultiBind
+    MultiBind,
+    BallComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
   providers: [],
-  bootstrap: [WelcomeComponent, StudentComponent, MultiBind]
+  bootstrap: [WelcomeComponent, StudentComponent, MultiBind, BallComponent]
 })
 export class AppModule { }
