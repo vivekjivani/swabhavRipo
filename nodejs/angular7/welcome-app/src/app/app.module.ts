@@ -5,19 +5,21 @@ import { FormsModule } from '@angular/forms';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { StudentComponent } from './student/student.component';
 import { CgpaBedgePipe } from './pipes/cgpaBedge';
+import { MultiBind } from './multiBinding/multiBind.component';
 
 
 @NgModule({
   declarations: [
     WelcomeComponent,
     StudentComponent,
-    CgpaBedgePipe
+    CgpaBedgePipe,
+    MultiBind
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
   providers: [],
-  bootstrap: [WelcomeComponent, StudentComponent]
+  bootstrap: [WelcomeComponent, StudentComponent, MultiBind]
 })
 export class AppModule { }

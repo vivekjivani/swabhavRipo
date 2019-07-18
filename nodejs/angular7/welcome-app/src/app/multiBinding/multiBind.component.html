@@ -1,0 +1,30 @@
+<div>
+    <label>Enter Message : </label>
+    <input type="text" name="textMessgae" [(ngModel)]='message' /><br /><br />
+    <label>Enter FontSize : </label>
+    <input type="number" name="fontSize" [(ngModel)]='fontSize' /><br /><br />
+    <label>Select BackgroundColor :</label>
+    <select [(ngModel)]='backgroundColor'>
+        <option hidden>select Color</option>
+        <option value="black">Black</option>
+        <option value="#ff3333">Red</option>
+        <option value="#00b300">Green</option>
+        <option value="#999999">Grey</option>
+        <option value="#3399ff">Blue</option>
+        <option value="#ffa31a">Orange</option>
+    </select><br /><br />
+    <label>Select ForegroundColor : </label>
+    <select [(ngModel)]='foregroundColor'>
+        <option hidden>select Color</option>
+        <option value="black">Black</option>
+        <option value="#ff3333">Red</option>
+        <option value="#00b300">Green</option>
+        <option value="#999999">Grey</option>
+        <option value="#3399ff">Blue</option>
+        <option value="#ffa31a">Orange</option>
+    </select><br /><br />
+    <hr />
+    <div><span [style.font-size.px]='fontSize' [style.background-color]='backgroundColor'
+            [style.color]='foregroundColor'>{{message}}</span></div>
+    <hr />
+</div>
