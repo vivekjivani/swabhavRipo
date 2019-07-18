@@ -1,7 +1,26 @@
 <div style="border-style: solid; padding: 10px 20px 10px 20px; margin : 10px">
-    <h1 [innerHTML]='student.name'></h1>
-    <h1 [innerHTML]='student.cgpi'></h1>
-    <h1 [innerHTML]='student.location'></h1>
-    <h1 [innerHTML]='student.dateOfJoin'></h1>
+    <p [innerHTML]='student.name'></p>
+    <p [innerHTML]='student.cgpa'></p>
+    <p [innerHTML]='student.location'></p>
+    <p [innerHTML]='student.dateOfJoin'></p>
     <img [src]='student.profilePicture' [style.height.px]='"100"' [style.width.px]='"100"' />
+
+    <input type="text" [ngModel]="student.name" (ngModelChange)="nameChange($event)"/>
+
+    <p [innerHTML]='student.name'></p>
+    <p [innerHTML]='student.cgpa'></p>
+    <p [innerHTML]='student.location'></p>
+    <p [innerHTML]='student.dateOfJoin'></p>
+    <img [src]='student.profilePicture' [style.height.px]='"100"' [style.width.px]='"100"' />
+    <!-- <hr>
+    <button (click)='displayStudentList()'>DisplayStudentList</button>
+    <hr>
+    <div *ngFor="let student of studentList">
+        <p>Name : {{student.name}}</p>
+        <p [style.background-color]="student.cgpa | cgpaBedge: student.cgpa">CGPA : {{student.cgpa}}</p>
+        <p>DateOfJoin : {{student.dateOfJoin}}</p>
+        <p>ProfilePicture : </p>
+        <img [src]='student.profilePicture' [style.height.px]='"100"' [style.width.px]='"100"' />
+        <hr>
+    </div> -->
 </div>
