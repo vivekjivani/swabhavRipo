@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
     templateUrl: './toggelButtonComponent.html',
@@ -13,13 +13,14 @@ export class ToggelButtonComponent implements OnInit {
     private onColor: string;
     @Input()
     private offColor: string;
-    private color:string;
+    @Output()
+    private color: string;
 
     constructor() {
         console.log('Inside Constructor');
         console.log(this.textValue);
         console.log(this.onColor);
-        console.log(this.offColor);    
+        console.log(this.offColor);
     }
 
     ngOnInit() {
@@ -31,11 +32,11 @@ export class ToggelButtonComponent implements OnInit {
     }
 
     toggler() {
-       this.state = (1 - this.state);
-       if(this.color == this.onColor){
+        this.state = (1 - this.state);
+        if (this.color == this.onColor) {
             this.color = this.offColor;
-       }else{
-           this.color = this.onColor;
-       }
+        } else {
+            this.color = this.onColor;
+        }
     }
 }

@@ -8,6 +8,7 @@ import { CgpaBedgePipe } from './pipes/cgpaBedge';
 import { MultiBind } from './multiBinding/multiBind.component';
 import { BallComponent } from './BlueBall/blueBall.component';
 import { ToggelButtonComponent } from './toggelButton/toggelButtonComponent';
+import { StarRating } from './StarRating/starRatingComponent';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ToggelButtonComponent } from './toggelButton/toggelButtonComponent';
     CgpaBedgePipe,
     MultiBind,
     BallComponent,
-    ToggelButtonComponent
+    ToggelButtonComponent,
+    StarRating
   ],
   imports: [
     BrowserModule,
