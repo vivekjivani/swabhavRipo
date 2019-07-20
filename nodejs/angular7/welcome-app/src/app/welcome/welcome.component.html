@@ -18,9 +18,9 @@
 <section hidden>
     <swabhav-ball-game></swabhav-ball-game>
 </section>
-<section hidden>
-    <toggel-button [textValue]='"Toggel"' [offColor]='"red"' [onColor]='"green"' [state]='"0"'></toggel-button>
-</section>
 <section>
-        <star-rating [starRating]='"3.5"'></star-rating>
+    <toggel-button [textValue]='"Toggel"' [offColor]='"red"' [onColor]='"green"' (stateChanged)='getDataFromChild($event)'></toggel-button>
+</section>
+<section hidden>
+        <star-rating [starRating]='"3"'></star-rating>
 </section>

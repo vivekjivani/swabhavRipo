@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     templateUrl: './toggelButtonComponent.html',
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 })
 export class ToggelButtonComponent implements OnInit {
     @Input()
-    private state: number;
+    private state: number = 1;
     @Input()
     private textValue: string;
     @Input()
@@ -14,9 +14,11 @@ export class ToggelButtonComponent implements OnInit {
     @Input()
     private offColor: string;
     @Output()
+    stateChanged: EventEmitter<Number>;
     private color: string;
 
     constructor() {
+        this.stateChanged = new EventEmitter<Number>();
         console.log('Inside Constructor');
         console.log(this.textValue);
         console.log(this.onColor);
@@ -32,6 +34,7 @@ export class ToggelButtonComponent implements OnInit {
     }
 
     toggler() {
+        this.stateChanged.emit(this.state);
         this.state = (1 - this.state);
         if (this.color == this.onColor) {
             this.color = this.offColor;
