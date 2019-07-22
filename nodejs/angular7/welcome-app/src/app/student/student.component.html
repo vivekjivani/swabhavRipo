@@ -23,4 +23,10 @@
         <img [src]='student.profilePicture' [style.height.px]='"100"' [style.width.px]='"100"' />
         <hr>
     </div> -->
+
+    <div class="container">
+        <input type="number" [(ngModel)]='number'/>
+        <button class="btn btn-primary" (click)='cube(number)'>Cube</button>
+        <p>Service Responce : {{cubeIs}}</p>
+    </div>
 </div>

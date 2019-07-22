@@ -9,19 +9,24 @@
 </div>
 
 <section hidden>
-   <swabhav-student></swabhav-student>
+    <swabhav-student></swabhav-student>
 </section>
-<hr><hr>
+<hr>
+<hr>
 <section hidden>
     <swabhav-multiBind></swabhav-multiBind>
 </section>
 <section hidden>
     <swabhav-ball-game></swabhav-ball-game>
 </section>
-<section>
-    <toggel-button [textValue]='"Toggel"' [offColor]='"red"' [onColor]='"green"' (stateChanged)='getDataFromChild($event)'></toggel-button>
+<section hidden>
+    <toggel-button [textValue]='"Toggel"' [offColor]='"red"' [onColor]='"green"'
+        (stateChanged)='getDataFromChild($event)'></toggel-button>
 </section>
 <hr>
-<section >
-        <star-rating [starRating]='"2"'></star-rating>
+<section hidden>
+    <star-rating [starRating]='"2"'></star-rating>
+</section>
+<section>
+    <number-fact></number-fact>
 </section>

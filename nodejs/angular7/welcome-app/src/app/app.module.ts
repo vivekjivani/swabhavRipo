@@ -9,6 +9,10 @@ import { MultiBind } from './multiBinding/multiBind.component';
 import { BallComponent } from './BlueBall/blueBall.component';
 import { ToggelButtonComponent } from './toggelButton/toggelButtonComponent';
 import { StarRating } from './StarRating/starRatingComponent';
+import { MathService } from './services/MathService';
+import { NumberApiService } from './services/NumberApiService';
+import { NumberFact } from './numberFacts/numberFacts';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,13 +23,15 @@ import { StarRating } from './StarRating/starRatingComponent';
     MultiBind,
     BallComponent,
     ToggelButtonComponent,
-    StarRating
+    StarRating,
+    NumberFact
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [WelcomeComponent, StudentComponent, MultiBind, BallComponent]
+  providers: [MathService, NumberApiService],
+  bootstrap: [WelcomeComponent, StudentComponent, MultiBind, BallComponent, NumberFact]
 })
 export class AppModule { }
