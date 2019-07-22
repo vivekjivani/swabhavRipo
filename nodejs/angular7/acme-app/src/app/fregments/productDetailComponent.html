@@ -1,0 +1,38 @@
+<!-- <diV>H</diV> -->
+<div class="container" style="border: 1px solid #428bca; padding: 0px;">
+    <div class="container-fluid bg-primary" style="border-radius: 1%;">
+        <h3>Product Detail: {{product.productName}} </h3>
+    </div>
+    <table style="margin-right:100px;margin-left : 50px; display:inline-block">
+        <tr>
+            <td>Name:</td>
+            <td>{{product.productName}}</td>
+        </tr>
+        <tr>
+            <td>Code:</td>
+            <td>{{product.productCode}}</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>{{product.description}}</td>
+        </tr>
+        <tr>
+            <td>ReleaseDate:</td>
+            <td>{{product.releaseDate}}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{product.price}}<span class=""></span></td>
+        </tr>
+        <!-- <tr>
+            <td>5 Star Rating:</td>
+            <td><input id="input-3" name="input-3" value="{{product.starRating}}" class="rating-loading"></td>
+        </tr> -->
+    </table>
+    <img src="{{product.imageUrl}}" class="w3-ri bottom-left w3-center img-responsive" style="display:inline-block" />
+    <div class="well well-sm" style="margin-bottom: 0%">
+        <div class=" container" style="display:table-footer">
+            <a class="btn btn-info" href="ProductList">back</a>
+        </div>
+    </div>
+</div>
