@@ -1,6 +1,8 @@
 'use strict';
-class Account {
+let EventEmitter = require('events');
+class Account extends EventEmitter {
     constructor(accountNumber, name, balance) {
+        super();
         this.accountNumber = accountNumber;
         this.name = name;
         this.balance = balance;
@@ -15,24 +17,22 @@ class Account {
 
     deposit(amount) {
         console.log('--------------------------------');
-        
-        console.log('Deposit : '+amount);
-        console.log('Old Balance : ' + this.balance);
+        console.log('Deposit : ' + amount);
         this.balance += amount;
-        console.log('New Balance : ' + this.balance);
+        this.emit('balanceChanged', this.balance);
     }
 
     withdrawal(amount) {
         console.log('--------------------------------');
-        console.log('withdrawal : '+amount);
-        if ((this.balance-amount) <= this.MIN_BALANCE) {
+        console.log('withdrawal : ' + amount);
+        if ((this.balance - amount) <= this.MIN_BALANCE) {
             console.log('Insufficient Balance');
             return;
         }
-        console.log('Old Balance : ' + this.balance);
         this.balance -= amount;
-        console.log('New Balance : ' + this.balance);
+        this.emit('balanceChanged', this.balance);
     }
 }
+
 
 module.exports = Account;
