@@ -6,27 +6,27 @@ class Contact {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        service.addContact(this);
+        //service.addContact(this);
     }
 
     get getName() {
-        return this._name;
+        return this.name;
     }
     set setName(name) {
-        this._name = name;
+        this.name = name;
     }
     get getId() {
-        return this._id;
+        return this.id;
     }
 
     set setId(id) {
-        this._id = id;
+        this.id = id;
     }
     get getPhone() {
-        return this._phone;
+        return this.phone;
     }
     set setPhone(phone) {
-        this._phone = phone;
+        this.phone = phone;
     }
 }
 module.exports = Contact;

@@ -14,7 +14,7 @@ do{
             break;
         
         case '2':
-            service.displayContact();
+            service.readData();
             break;
 
         default:
