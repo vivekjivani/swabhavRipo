@@ -16,6 +16,7 @@ class Game {
         this.moveCounter++;
         this.switchPlayer();
     }
+
     displayBoard(){
         this.board.printBoard();
     }
