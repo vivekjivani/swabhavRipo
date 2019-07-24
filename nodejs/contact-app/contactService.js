@@ -23,14 +23,24 @@ class ContactService {
     //         })
     //     });
     // }
-    readData() {
-        let rawdata = fs.readFileSync('contact.json');
-        this.contactList = JSON.parse(rawdata);
-        this.printData();
+    // readData() {
+    //     let rawdata = fs.readFileSync('contact.json');
+    //     this.contactList = JSON.parse(rawdata);
+    //     this.printData();
+    // }
+    async read(){
+        fs.readFile('contact.json', (error, data)=>{
+            if(error){
+                console.log(error);
+            }else{
+                this.contactList = JSON.parse(data);
+                //return this.contactList;                
+                this.printData();
+            }
+        });
     }
     printData() {
         console.log(this.contactList);
-
     }
 }
 

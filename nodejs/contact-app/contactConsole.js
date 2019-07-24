@@ -23,7 +23,10 @@ do{
             //         console.log(error);
             //     }
             // )
-            service.readData();
+            async function fun(){
+                await service.read()
+            };
+            fun();
             break;
 
         default:
