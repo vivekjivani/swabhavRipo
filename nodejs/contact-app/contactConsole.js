@@ -14,6 +14,15 @@ do{
             break;
         
         case '2':
+            // service.readData().then(
+            //     (data) => {
+            //         console.log(data);
+            //     }
+            // ).catch(
+            //     (error) => {
+            //         console.log(error);
+            //     }
+            // )
             service.readData();
             break;
 
