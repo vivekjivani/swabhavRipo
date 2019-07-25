@@ -12,7 +12,7 @@ class Cell {
         if(this.cellState == Mark.Empty){
             this.cellState = mark;
         }else{
-            throw new 'already marked';
+            throw Error('already marked');
         }
     }
 }
