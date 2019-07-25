@@ -1,8 +1,7 @@
-let Board = require('./board');
 let Mark = require('./Mark');
 class ResultAnallyzer {
     constructor(board) {
-        this.board = Board;
+        this.board = board;
     }
 
     checkForWin() {
@@ -85,3 +84,5 @@ class ResultAnallyzer {
     }
 
 }
+
+module.exports = ResultAnallyzer;

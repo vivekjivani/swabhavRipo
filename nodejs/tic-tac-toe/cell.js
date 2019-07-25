@@ -14,7 +14,6 @@ class Cell {
         }else{
             throw new 'already marked';
         }
-        
     }
 }
 

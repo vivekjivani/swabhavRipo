@@ -13,9 +13,17 @@ class Board {
         this.cells[cellNumber].putMark(mark);
     }
 
+    getMarkOnCell(cellNumber) {
+        return this.cells[cellNumber].getMark();
+    }
+
     printBoard() {
-        for (let i = 0; i < 9; i++) {
-           console.log(this.cells[i]);
+        for (let i = 0; i < 9; i += 3) {
+            let row = "";
+            for (let j = i; j < 3 + i && j < 9; j++) {
+                row += this.cells[j].getMark() + "\t";
+            }
+            console.log(row);
         }
     }
 }
