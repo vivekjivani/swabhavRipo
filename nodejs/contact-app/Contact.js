@@ -3,14 +3,14 @@ let service = require('./contactService');
 class Contact {
 
     constructor(id, name, phone) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
+        this._id = id;
+        this._name = name;
+        this._phone = phone;
         //service.addContact(this);
     }
 
-    get getName() {
-        return this.name;
+    get Name() {
+        return this._name;
     }
     set setName(name) {
         this.name = name;
@@ -19,8 +19,8 @@ class Contact {
         return this.id;
     }
 
-    set setId(id) {
-        this.id = id;
+    set Id(id) {
+        this._id = id;
     }
     get getPhone() {
         return this.phone;
