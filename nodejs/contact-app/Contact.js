@@ -12,21 +12,21 @@ class Contact {
     get Name() {
         return this._name;
     }
-    set setName(name) {
-        this.name = name;
+    set Name(name) {
+        this._name = name;
     }
-    get getId() {
-        return this.id;
+    get Id() {
+        return this._id;
     }
 
     set Id(id) {
         this._id = id;
     }
-    get getPhone() {
-        return this.phone;
+    get Phone() {
+        return this._phone;
     }
-    set setPhone(phone) {
-        this.phone = phone;
+    set Phone(phone) {
+        this._phone = phone;
     }
 }
 module.exports = Contact;

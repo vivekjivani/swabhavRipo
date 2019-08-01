@@ -1,7 +1,9 @@
 let Contact = require('./Contact');
-let service = require('./contactService');
+let service = require('./contactDBService');
 let readlineSync = require('readline-sync');
 let contact = new Contact();
+let contactArray = [];
+
 do {
     console.log('1. add Contact');
     console.log('2. display Contact');
@@ -14,13 +16,10 @@ do {
             break;
 
         case '2':
-            async function main() {
-                console.log('before read');
-                let data = await service.readData();
-                console.log(data);
-                console.log('after read');                
+            async function acyncCoverFunction() {
+                data = await service.readData();
             };
-            main();
+            acyncCoverFunction();
             break;
 
         default:
@@ -33,7 +32,7 @@ function userInput() {
     let id = readlineSync.question('Id : ');
     let name = readlineSync.question('Name : ');
     let phone = readlineSync.question('Phone : ');
-    contact.setId = id;
-    contact.setName = name;
-    contact.setPhone = phone;
+    contact.Id = id;
+    contact.Name = name;
+    contact.Phone = phone;
 }
