@@ -2,12 +2,29 @@ let App = require('../app');
 let Service = require('../service/contactService');
 let Contact = require('../model/Contact');
 
-
-App.get('/swagger.json', function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(swaggerSpec);
-});
-
+/**
+ * @swagger
+ *
+ * /login:
+ *   post:
+ *     description: Login to the application
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: username
+ *         description: Username to use for login.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: User's password.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: login
+ */
 App.get('/api/v1/contacts', (req, res) => {
     Service.readData().then(
         (data) => {

@@ -22,6 +22,12 @@ var options = {
 };
 var swaggerSpec = swaggerJSDoc(options);
 
+app.get('/swagger.json', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpec);
+});
+
+
 app.use(cors());
 app.use(bodyParser.json());
 module.exports = app;
