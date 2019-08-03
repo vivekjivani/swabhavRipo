@@ -9,24 +9,24 @@ function compressionMidware(req, res, next) {
     next();
 }
 
-function encryptionMidware(req, res, next){
+function encryptionMidware(req, res, next) {
     console.log('inside Encryption Middleware');
     next();
 }
 
-function authonticationMidware(res, req, next){
+function authonticationMidware(res, req, next) {
     console.log('inside Authentication Middleware');
     next();
 }
 
 app.use('/login', compressionMidware, encryptionMidware, authonticationMidware);
 
-app.get('/login', (req, res, next)=>{
+app.get('/login', (req, res, next) => {
     console.log('inside Login Controller');
     res.end();
 });
 
 
-app.listen(3000, ()=>{
+app.listen(3000, () => {
     console.log('Server is running at port : localhost:3000');
 });
