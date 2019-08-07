@@ -1,17 +1,17 @@
-let express = requier('express');
+let express = require('express');
 let app = express();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
-const PORT = 8080;
+
+const PORT = 9090;
 
 app.use(express.static('public'));
 
-io.on('connection', function (socket) {
-    console.log('A new WebSocket connection has been established');
+io.on('connection', (socket) => {
+    console.log('user connected');
 });
 
-io.
 
-app.listen(8080, function callBack() {
-    console.log(`Server Running at Port ${PORT}`);
+http.listen(PORT, function callBack() {
+    console.log(`server is listning to port : ${PORT}`);
 });
