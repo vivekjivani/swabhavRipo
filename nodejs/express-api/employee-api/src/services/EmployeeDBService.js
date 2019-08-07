@@ -20,6 +20,7 @@ class EmployeeDBService {
     }
 
     addEmployee(dId, employee) {
+        dId = parseInt(dId);
         return new Promise((resolve, reject) => {
             this.collection.update(
                 { DEPTNO: dId },
@@ -39,6 +40,7 @@ class EmployeeDBService {
 
     deleteEmployeeById(dId, eId) {
         eId = parseInt(eId);
+        dId = parseInt(dId);
         return new Promise((resolve, reject) => {
             this.collection.updateOne({ DEPTNO: dId }, { $pull: { 'EMP': { EMPNO: eId } } })
                 .then(
@@ -57,6 +59,7 @@ class EmployeeDBService {
     }
 
     deleteDepartmentById(dId) {
+        dId = parseInt(dId);
         return new Promise((resolve, reject) => {
             this.collection.remove({ DEPTNO: dId })
                 .then(
@@ -131,6 +134,7 @@ class EmployeeDBService {
     }
 
     getDepartmentById(dId) {
+        dId = parseInt(dId);
         return new Promise((resolve, reject) => {
             this.collection.find({ DEPTNO: dId }, {
                 projection: {
@@ -149,6 +153,7 @@ class EmployeeDBService {
     }
 
     getEmployeeInDepartment(dId) {
+        dId = parseInt(dId);
         return new Promise((resolve, reject) => {
             this.collection.find({ DEPTNO: dId }, {
                 projection: {
@@ -172,6 +177,8 @@ class EmployeeDBService {
     }
 
     getEmployeeById(dId, eId) {
+        eId = parseInt(eId);
+        dId = parseInt(dId);
         return new Promise((resolve, reject) => {
 
             this.collection.find({ DEPTNO: dId }, {

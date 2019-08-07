@@ -6,15 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="socket.io/socket.io.js"></script>
-    <script>
-        var socket = io();
-    </script>
+
+    <style>
+        input {
+            height: 30px;
+            width: 600px;
+        }
+    </style>
 
 </head>
 
 <body>
-    <h1>Hello</h1>
+    <div class="container">
+        <div class="jumbotron">
+            <h2 align='center'>welcome User</h2>
+        </div>
+        <center>
+            <div class="contaciner">
+                <input type="text" id="textField" placeholder="Enter Message Here" />
+                <button class="btn btn-default" id="sendBtn">send</button>
+            </div>
+            <div class="container">
+                <p id="display"></p>
+            </div>
+        </center>
+    </div>
+
+    <script>
+        var socket = io();
+
+        socket.on('messageEventServer', function (message) {
+            $('#display').html(message);
+        });
+
+        $('#sendBtn').on('click', function () {
+            let message = $('#textField').val();
+            socket.emit('messageEventClient', message)
+        })
+    </script>
 </body>
 
 </html>

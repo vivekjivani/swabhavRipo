@@ -3,9 +3,21 @@ let service = require('../services/EmployeeDBService');
 
 /**
  * @swagger
- * tags:
+ * tags: 
  *   name: DepartmentController
  *   description: department management
+ */
+/**
+ * @swagger
+ * definitions:
+ *   Department:
+ *     properties:
+ *       DEPTNO:
+ *         type: integer
+ *       DNAME:
+ *         type: string
+ *       LOC:
+ *         type: string
  */
 class DepartmentController {
     constructor(app) {
@@ -19,10 +31,16 @@ class DepartmentController {
          * @swagger
          * /api/v1/department:
          *   get:
-         *     description: return department data
+         *     tags:
+         *       - DepartmentController
+         *     description: Returns all Department
+         *     produces:
+         *       - application/json
          *     responses:
          *       200:
-         *         description: json of department data
+         *         description: An array of Departments
+         *         schema:
+         *           $ref: '#/definitions/Department'
          */
         this.app.get('/api/v1/department', (req, res) => {
             service.getAllDepartment()
@@ -42,26 +60,21 @@ class DepartmentController {
          * @swagger
          * /api/v1/department:
          *   post:
+         *     tags: 
+         *       - DepartmentController
          *     description: return added department
-         *     requestBody:
-         *      content:
-         *          application/json:
-         *              schema:
-         *                type: object
-         *                properties:
-         *                    DEPTNO:
-         *                         type: integer
-         *                    DNAME:
-         *                         type: string
-         *                    LOC:
-         *                         type: string
-         *              example:
-         *                  DEPTNO: 10
-         *                  DNAME: ACCOUNTING
-         *                  LOC: CANADA
+         *     parameters:
+         *       - name: department
+         *         description: department object
+         *         in: body
+         *         required: true
+         *         schema:
+         *           $ref: '#/definitions/Department'
          *     responses:
-         *       '200':
-         *         description: 'OK'
+         *       200:
+         *         description: return all department
+         *         schema:
+         *           $ref: '#/definitions/Department'
          */
         this.app.post('/api/v1/department', (req, res) => {
             // res.send(req.body);
@@ -79,20 +92,24 @@ class DepartmentController {
 
         /**
          * @swagger
-         * paths:
-         *  /api/v1/department/{id}:
+         * /api/v1/department/{id}:
          *   get:
-         *     description: return department data of specified Id
+         *     tags:
+         *       - DepartmentController
+         *     description: Returns a single Department
+         *     produces:
+         *       - application/json
          *     parameters:
-         *          - in: path
-         *            name: deptId
-         *            schema:
-         *              type : integer
-         *            require: true
-         *            description: Numeric ID of the user to get
+         *       - name: id
+         *         description: Department's id
+         *         in: path
+         *         required: true
+         *         type: integer
          *     responses:
          *       200:
-         *         description: json of single department
+         *         description: A single department
+         *         schema:
+         *           $ref: '#/definitions/Department'
          */
         this.app.get('/api/v1/department/:id', (req, res) => {
             service.getDepartmentById(req.params.id)
@@ -112,10 +129,22 @@ class DepartmentController {
          * @swagger
          * /api/v1/department/{id}/employee:
          *   get:
-         *     description: return employee data from department of specified Id
+         *     tags:
+         *       - DepartmentController
+         *     description: Returns a single Department's all employees
+         *     produces:
+         *       - application/json
+         *     parameters:
+         *       - name: id
+         *         description: Department's id
+         *         in: path
+         *         required: true
+         *         type: integer
          *     responses:
          *       200:
-         *         description: json of employee data
+         *         description: Array of employees
+         *         schema:
+         *           $ref: '#/definitions/Department'
          */
         this.app.get('/api/v1/department/:id/employee', (req, res) => {
             service.getEmployeeInDepartment(req.params.id)
@@ -135,24 +164,20 @@ class DepartmentController {
         * /api/v1/department/{id}:
         *   delete:
         *     description: delete department of specified id and return it
+        *     tags: 
+        *       - DepartmentController
+        *     parameters:
+        *       - name: id
+        *         description: Department's id
+        *         in: path
+        *         required: true
+        *         type: integer
         *     responses:
         *       200:
-        *         description: json of single depatment data
+        *         description: A single puppy
+        *         schema:
+        *           $ref: '#/definitions/Department'
         */
-        // this.app.delete('/api/v1/department/:id', (req, res) => {
-        //     service.deleteDepartmentById(req.params.id)
-        //         .then(
-        //             (result) => {
-        //                 res.send(result);
-        //             }
-        //         )
-        //         .catch(
-        //             (err) => {
-        //                 res.send(err);
-        //             }
-        //         );
-        // });
-
         this.app.delete('/api/v1/department/:id', (req, res) => {
             service.deleteDepartmentById(req.params.id)
                 .then(
