@@ -1,7 +1,7 @@
 let Express = require('express');
 let BodyParser = require('body-parser');
 let Cors = require('cors');
-let SwaggerJSDoc = require('swagger-jsdoc');
+let swaggerJSDoc = require('swagger-jsdoc');
 let ContactController = require('./controllers/ContactController');
 
 let app = Express();
@@ -32,12 +32,12 @@ app.get('/swagger.json', function(req, res) {
 });
 //swagger end
 
-app.use(Cors());
-app.use(BodyParser.json());
-app.use(Express.static('public'));
+    app.use(Cors());
+    app.use(BodyParser.json());
+    app.use(Express.static('public'));
 
-let contactController = new ContactController(app);
+    let contactController = new ContactController(app);
 
-app.listen(PORT, function callBackWelcome() {
-    console.log('Server is running on port number :', PORT);
-});
+    app.listen(PORT, function callBackWelcome() {
+        console.log('Server is running on port number :', PORT);
+    });

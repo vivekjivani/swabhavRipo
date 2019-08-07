@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mini App</title>
+
+    <script src="lib/jquery.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="app.service.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="ContactApp.spa">
+    <div class="container well-lg">
+        <div class="visible-lg-inline visible-md-inline visible-sm-inline">
+            <a href="#!/home" class="btn btn-default">Home</a>
+        </div>
+        <div class="visible-lg-inline visible-md-inline visible-sm-inline">
+            <a href="#!/employee" class="btn btn-default">View Employee</a>
+        </div>
+        <hr>
+        <div ng-view>
+
+        </div>
+    </div>
+</body>
+
+</html>

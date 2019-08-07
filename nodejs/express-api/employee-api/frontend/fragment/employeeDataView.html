@@ -1,0 +1,36 @@
+<section class="well-lg" ng-init="getAllEmployee()">
+    <table class="table table-bordered table-condensed table-hover table-responsive" style="background-color : ivory">
+        <thead>
+            <th>Delete</th>
+            <th>EmpNo</th>
+            <th>EmpName</th>
+            <th>Job</th>
+            <th>ManagerId</th>
+            <th>HireDate</th>
+            <th>Salary</th>
+            <th>Commission</th>
+            <th>DeptName</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat='employee in arrayOfEmployee'>
+                <td><a href="#!/home"><button class="btn btn-default" ng-click="delete(employee.id)"><span
+                                class="glyphicon glyphicon-remove" style="color:red"></span></button></a></td>
+                <td>{{employee.EMPNO}}</td>
+                <td>{{employee.ENAME}}</td>
+                <td>{{employee.JOb}}</td>
+                <td>{{employee.MGR}}</td>
+                <td>{{employee.HIREDATE}}</td>
+                <td>{{employee.SAL}}</td>
+                <td>{{employee.COMM}}</td>
+                <td>{{employee.DEPT}}</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <a href="#!/addContact"><button class="btn btn-default btn-lg ">
+                            <spna class="glyphicon glyphicon-plus" style="color:green"></spna>&nbsp;&nbsp;Add Employee
+                        </button></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
