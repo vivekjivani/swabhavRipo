@@ -34,6 +34,6 @@ app.use(express.static('public'));
 new employeeController(app);
 new departmentController(app);
 
-app.listen(8080, function callBack() {
+app.listen(PORT, function callBack() {
     console.log(`Server Running at Port ${PORT}`);
 });

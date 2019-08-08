@@ -8,6 +8,7 @@ const PORT = 9090;
 app.use(express.static('public'));
 
 io.on('connection', function (socket) {
+    console.log(socket.id);
     console.log('A new WebSocket connection has been established');
     socket.on('messageEventClient', function (message) {
         console.log('Server received : ' + message);

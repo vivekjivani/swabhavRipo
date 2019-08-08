@@ -4,7 +4,7 @@ let service = require('../services/EmployeeDBService');
 /**
  * @swagger
  * tags:
- *   name: EmployeeController
+ *   name: Employee
  *   description: employee management
  */
 /**
@@ -39,7 +39,7 @@ class EmployeeController {
          * /api/v1/department/employee:
          *   get:
          *     tags:
-         *       - EmployeeController
+         *       - Employee
          *     description: Returns all Employee
          *     produces:
          *       - application/json
@@ -69,7 +69,7 @@ class EmployeeController {
          * /api/v1/department/{id}/employee:
          *   post:
          *     tags: 
-         *       - EmployeeController
+         *       - Employee
          *     description: return added employee
          *     parameters:
          *       - name: employee
@@ -105,7 +105,7 @@ class EmployeeController {
         *   get:
         *     description: get employee of specified id and return it
         *     tags: 
-        *       - EmployeeController
+        *       - Employee
         *     parameters:
         *       - name: departmentId
         *         description: Department's id
@@ -142,7 +142,7 @@ class EmployeeController {
         *   delete:
         *     description: delete employee of specified id and return it
         *     tags: 
-        *       - EmployeeController
+        *       - Employee
         *     parameters:
         *       - name: departmentId
         *         description: Department's id

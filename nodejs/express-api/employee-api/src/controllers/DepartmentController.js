@@ -4,7 +4,7 @@ let service = require('../services/EmployeeDBService');
 /**
  * @swagger
  * tags: 
- *   name: DepartmentController
+ *   name: Department
  *   description: department management
  */
 /**
@@ -32,7 +32,7 @@ class DepartmentController {
          * /api/v1/department:
          *   get:
          *     tags:
-         *       - DepartmentController
+         *       - Department
          *     description: Returns all Department
          *     produces:
          *       - application/json
@@ -61,7 +61,7 @@ class DepartmentController {
          * /api/v1/department:
          *   post:
          *     tags: 
-         *       - DepartmentController
+         *       - Department
          *     description: return added department
          *     parameters:
          *       - name: department
@@ -95,7 +95,7 @@ class DepartmentController {
          * /api/v1/department/{id}:
          *   get:
          *     tags:
-         *       - DepartmentController
+         *       - Department
          *     description: Returns a single Department
          *     produces:
          *       - application/json
@@ -130,7 +130,7 @@ class DepartmentController {
          * /api/v1/department/{id}/employee:
          *   get:
          *     tags:
-         *       - DepartmentController
+         *       - Department
          *     description: Returns a single Department's all employees
          *     produces:
          *       - application/json
@@ -165,7 +165,7 @@ class DepartmentController {
         *   delete:
         *     description: delete department of specified id and return it
         *     tags: 
-        *       - DepartmentController
+        *       - Department
         *     parameters:
         *       - name: id
         *         description: Department's id
