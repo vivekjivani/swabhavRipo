@@ -24,6 +24,7 @@
     <div class="container">
         <div class="jumbotron">
             <h2 align='center'>welcome User</h2>
+            <h4 align='center' id="socketId">Socket id : socket is not connected yet</h4>
         </div>
         <center>
             <div class="contaciner">
@@ -37,16 +38,20 @@
     </div>
 
     <script>
-        var socket = io();
-        
-        socket.on('messageEventServer', function (message) {
+        let socket = io();
+
+        socket.on('connect', function () {
+            $('#socketId').html('Socket id : ' + socket.id);
+        });
+
+        socket.on('serverMessageEvent', function (message) {
             $('#display').html(message);
         });
 
         $('#sendBtn').on('click', function () {
             let message = $('#textField').val();
-            socket.emit('messageEventClient', message)
-        })
+            socket.emit('clientMessageEvent', message, socket.id)
+        });
     </script>
 </body>
 

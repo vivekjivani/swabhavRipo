@@ -6,9 +6,8 @@ client.connect((err) => {
         throw err;
     }
     console.log('Connected');
-    const collection = client.db("Contact").collection("Contact");
-    collection.find({}).toArray(function (err, result) {
-        if (err) throw err;
+    const collection = client.db("task_managemnet_system").collection("user");
+    collection.insertOne(data,(result)=>{
         console.log(result);
     });
     client.close();
