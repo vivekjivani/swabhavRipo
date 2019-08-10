@@ -7,12 +7,20 @@ class UserController {
     }
 
     routeHandler() {
+        
+        let authenticationMidware = function (req, res, next) {
+            if (req.session && req.session.user) {
+                next();
+            } else {
+                res.send('please, firt login needed!!');
+            }
+        }
 
         this._app.post('/api/v1/user/:id?/login', (req, res) => {
             service.getUserId(req.body.email)
                 .then(
                     (result) => {
-                        req.session.userId = result._id;
+                        req.session.user = result._id;
                         res.send(result);
                     }
                 ).catch(
@@ -23,8 +31,8 @@ class UserController {
         });
 
 
-        this._app.get('/api/v1/user:id?', (req, res) => {
-            service.getUser(req.session.userId)
+        this._app.get('/api/v1/user:id?', authenticationMidware,(req, res) => {
+            service.getUser(req.session.user)
                 .then(
                     (result) => {
                         res.send(result);

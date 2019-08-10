@@ -27,12 +27,10 @@ class UserService {
                 .select({ _id: 1 })
                 .exec((error, user) => {
                     if (error) {
-                        //console.log(error);
                         reject(error);
                     } else if (!user) {
                         reject('User not found.');
                     }
-                    // console.log(res);
                     resolve(user);
                 })
         });
@@ -56,10 +54,8 @@ class UserService {
                 .select(select)
                 .exec((error, response) => {
                     if (error) {
-                        //console.log(error);
                         reject(error);
                     }
-                    // console.log(res);
                     resolve(response);
                 })
         });
