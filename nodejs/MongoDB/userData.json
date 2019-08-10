@@ -1,0 +1,16 @@
+{
+    "_id": "5d4d382fe9f1dc2eecda7f87",
+    "firstName": "hiren",
+    "lastName": "more",
+    "gender": "male",
+    "birthDate": {
+        "$date": "1989-04-03"
+    },
+    "phone": {
+        "$numberDouble": "6765678987"
+    },
+    "emailId": "rain.more27@gmail.com",
+    "address": "andheri(E), mumbai",
+    "password": "hiren1122",
+    "isDeleted": false
+}
