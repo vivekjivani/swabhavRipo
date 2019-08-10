@@ -36,6 +36,23 @@ class UserService {
         });
     }
 
+    registerUser(userData) {
+        return new Promise((resolve, reject) => {
+            let user = new userModel(userData);
+            user.save()
+                .then(
+                    (result) => {
+                        resolve(result);
+                    }
+                )
+                .catch(
+                    (error) => {
+                        reject(error);
+                    }
+                );
+        });
+    }
+
     getUser(id) {
         return new Promise((resolve, reject) => {
             let select = {

@@ -7,16 +7,7 @@ class UserController {
     }
 
     routeHandler() {
-        
-        let authenticationMidware = function (req, res, next) {
-            if (req.session && req.session.user) {
-                next();
-            } else {
-                res.send('please, firt login needed!!');
-            }
-        }
-
-        this._app.post('/api/v1/user/:id?/login', (req, res) => {
+        this._app.post('/api/v1/user/login', (req, res) => {
             service.getUserId(req.body.email)
                 .then(
                     (result) => {
@@ -30,9 +21,12 @@ class UserController {
                 );
         });
 
+        this._app.post('/api/v1/user/logout', (req, res) => {
+            res.send('logout..');
+        })
 
-        this._app.get('/api/v1/user:id?', authenticationMidware,(req, res) => {
-            service.getUser(req.session.user)
+        this._app.get('/api/v1/user/:userId', (req, res) => {
+            service.getUser(req.params.userId)
                 .then(
                     (result) => {
                         res.send(result);
@@ -44,9 +38,10 @@ class UserController {
                 );
         });
 
+
         this._app.post('/api/v1/user', (req, res) => {
             let user = req.body;
-            service.addUser(user)
+            service.registerUser(user)
                 .then(
                     (result) => {
                         res.send(result);
@@ -61,3 +56,15 @@ class UserController {
 }
 
 module.exports = UserController;
+
+//rest API should be stateless
+
+        // let authenticationMidware = function (req, res, next) {
+        //     if (req.session && req.session.user) {
+        //         next();
+        //     } else {
+        //         res.send('please, login first!!');
+        //     }
+        // }
+
+           // req.session.reset();
