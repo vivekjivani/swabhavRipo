@@ -114,6 +114,24 @@ class UserService {
             });
         });
     }
+
+    deleteUser(userId) {
+        return new Promise((resolve, reject) => {
+            userModel.updateOne(
+                { _id: userId },
+                {
+                    $set: {
+                        isDelete: true
+                    }
+                }
+            ).exec((error, response) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(response);
+            });
+        });
+    }
 }
 
 module.exports = new UserService();

@@ -24,7 +24,8 @@ class UserController {
         });
 
         //logout
-        this._app.post('/api/v1/user/logout', (req, res) => {
+        this._app.post('/api/v1/user/:userId/logout', (req, res) => {
+            let userId = req.params.userId;
             res.send('logout..');
         })
 
@@ -72,7 +73,22 @@ class UserController {
                         res.send(error);
                     }
                 );
-        })
+        });
+
+        //deleteUSer
+        this._app.delete('/api/v1/user/:userId/delete', (req, res) => {
+            let userId = req.params.userId;
+            service.deleteUser(userId)
+                .then(
+                    (result) => {
+                        res.send(result);
+                    }
+                ).catch(
+                    (error) => {
+                        res.send(error);
+                    }
+                );
+        });
     }
 }
 
