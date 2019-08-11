@@ -7,11 +7,13 @@ class UserController {
     }
 
     routeHandler() {
+
+        //login
         this._app.post('/api/v1/user/login', (req, res) => {
-            service.getUserId(req.body.email)
+            let email = req.body.emailId;
+            service.getUserId(email)
                 .then(
                     (result) => {
-                        req.session.user = result._id;
                         res.send(result);
                     }
                 ).catch(
@@ -21,10 +23,12 @@ class UserController {
                 );
         });
 
+        //logout
         this._app.post('/api/v1/user/logout', (req, res) => {
             res.send('logout..');
         })
 
+        // get user by Id
         this._app.get('/api/v1/user/:userId', (req, res) => {
             service.getUser(req.params.userId)
                 .then(
@@ -38,7 +42,7 @@ class UserController {
                 );
         });
 
-
+        // add user
         this._app.post('/api/v1/user', (req, res) => {
             let user = req.body;
             service.registerUser(user)
@@ -52,6 +56,23 @@ class UserController {
                     }
                 );
         });
+
+        //edit user
+        this._app.put('/api/v1/user/:userId', (req, res) => {
+            let userData = req.body;
+            let userId = req.params.userId;
+            service.editUser(userData, userId)
+                .then(
+                    (result) => {
+                        res.send(result);
+                    }
+                )
+                .catch(
+                    (error) => {
+                        res.send(error);
+                    }
+                );
+        })
     }
 }
 
