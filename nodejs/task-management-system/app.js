@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 //controllers import
 const UserController = require('./controllers/UserController');
 const TaskController = require('./controllers/TaskController');
+const SubtaskController = require('./controllers/SubtaskController');
+
 const mongoose = require('mongoose');
 const uri = "mongodb+srv://admin:root@cluster0-sjbot.mongodb.net/"
     + "task_managemnet_system?retryWrites=true&w=majority";
@@ -36,6 +38,7 @@ app.use(bodyParser.json());
 
 new UserController(app);
 new TaskController(app);
+new SubtaskController(app);
 
 app.listen(PORT, function callBack() {
     console.log(`server is running on localhost:${PORT}`);

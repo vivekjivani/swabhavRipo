@@ -1,16 +1,16 @@
 const userModel = require('../schemas/usersSchema');
 
-class TaskService {
+class SubtaskService {
     constructor() {
     }
 
-    addTask(userId, taskData) {
+    addSubtask(userId, taskId, subtaskData) {
         return new Promise((resolve, reject) => {
             userModel.updateOne(
-                { _id: userId },
+                { _id: userId, 'Task._id': taskId },
                 {
                     $push: {
-                        Task: taskData
+                        'Task.$.SubTask': subtaskData
                     }
                 }
             ).exec((error, response) => {
@@ -22,21 +22,25 @@ class TaskService {
         });
     }
 
-    getAllTask(userId) {
+    getAllSubtask(userId, taskId) {
         return new Promise((resolve, reject) => {
             let select = {
                 _id: 0,
-                Task: 1
+                'Task.SubTas': 1
             }
             userModel.find()
-                .where('_id')
-                .equals(userId)
+                .where({ _id: userId, 'Task._id': taskId })
                 .select(select)
                 .exec()
                 .then(
                     (response) => {
-                        let result = response[0].Task
+                        let result = response[0].Task.forEach(element => {
+                            if (element._id == taskId) {
+                                return element.SubTask;
+                            }
+                        });
                         resolve(result);
+                        // resolve(response);
                     }
                 )
                 .catch(
@@ -49,15 +53,18 @@ class TaskService {
 
     getTaskById(userId, taskId) {
         return new Promise((resolve, reject) => {
-            userModel.findOne({ _id: userId, 'Task._id': taskId }, { Task: { $elemMatch: { _id: taskId } } })
-                .select({
-                    _id:0,
-                    'Task._id':0,
-                 })
+            let select = {
+                _id: 0,
+                Task: 1
+            }
+            userModel.find()
+                .where({ _id: userId, 'Task._id': taskId })
+                .select(select)
                 .exec()
                 .then(
                     (response) => {
-                        resolve(response.Task);
+                        let result = response[0].Task
+                        resolve(result);
                     }
                 )
                 .catch(
@@ -77,7 +84,7 @@ class TaskService {
                 },
                 {
                     $set: {
-                        'Task.$': taskData
+                        'Task': taskData
                     }
                 }
             )
@@ -107,4 +114,4 @@ class TaskService {
     }
 }
 
-module.exports = new TaskService();
+module.exports = new SubtaskService();

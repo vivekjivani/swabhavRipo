@@ -4,10 +4,10 @@ class UserService {
     constructor() {
     }
 
-    getUserId(email) {
+    getUserId(email, password) {
         return new Promise((resolve, reject) => {
             userModel
-                .findOne({ emailId: email })
+                .findOne({ emailId: email, password: password})
                 .select({ _id: 1 })
                 .exec((error, userId) => {
                     if (error) {
@@ -49,7 +49,7 @@ class UserService {
                 address: 1
             };
             userModel
-                .find()
+                .find({ isDelete: false })
                 .where('_id')
                 .equals(id)
                 .select(select)

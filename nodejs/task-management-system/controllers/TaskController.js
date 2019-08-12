@@ -7,6 +7,8 @@ class TaskController {
     }
 
     routeHandler() {
+
+        //get all tasks
         this._app.get('/api/v1/user/:userId/tasks', (req, res) => {
             let userId = req.params.userId;
             service.getAllTask(userId)
@@ -21,6 +23,7 @@ class TaskController {
                 );
         });
 
+        //add tasks
         this._app.post('/api/v1/user/:userId/tasks', (req, res) => {
             let userId = req.params.userId;
             let taskData = req.body;
@@ -36,6 +39,7 @@ class TaskController {
                 );
         });
 
+        //edit tasks 
         this._app.put('/api/v1/user/:userId/tasks/:taskId', (req, res) => {
             let userId = req.params.userId;
             let taskId = req.params.taskId;
@@ -53,7 +57,7 @@ class TaskController {
                 );
         });
 
-
+        // get task by id 
         this._app.get('/api/v1/user/:userId/tasks/:taskId', (req, res) => {
             let userId = req.params.userId;
             let taskId = req.params.taskId;
@@ -70,6 +74,7 @@ class TaskController {
                 );
         });
 
+        //delete task by id
         this._app.delete('/api/v1/user/:userId/tasks/:taskId', (req, res) => {
             let userId = req.params.userId;
             let taskId = req.params.taskId;
