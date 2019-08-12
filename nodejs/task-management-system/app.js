@@ -1,12 +1,15 @@
 const express = require('express');
+
+//middlewares import
 const cors = require('cors');
 const bodyParser = require('body-parser');
+
+//controllers import
 const UserController = require('./controllers/UserController');
+const TaskController = require('./controllers/TaskController');
 const mongoose = require('mongoose');
-// const usersSchema = require('../schemas/usersSchema');
 const uri = "mongodb+srv://admin:root@cluster0-sjbot.mongodb.net/"
     + "task_managemnet_system?retryWrites=true&w=majority";
-
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -23,6 +26,7 @@ mongoose.connect(uri, { useNewUrlParser: true })
             console.log(error);
         }
     );
+
 let app = express();
 
 const PORT = 9090;
@@ -31,6 +35,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 new UserController(app);
+new TaskController(app);
 
 app.listen(PORT, function callBack() {
     console.log(`server is running on localhost:${PORT}`);
