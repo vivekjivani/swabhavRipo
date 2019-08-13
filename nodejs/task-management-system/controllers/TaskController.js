@@ -8,6 +8,9 @@ class TaskController {
 
     routeHandler() {
 
+        //middleware
+        
+
         //get all tasks
         this._app.get('/api/v1/user/:userId/tasks', (req, res) => {
             let userId = req.params.userId;
@@ -41,10 +44,10 @@ class TaskController {
 
         //edit tasks 
         this._app.put('/api/v1/user/:userId/tasks/:taskId', (req, res) => {
-            let userId = req.params.userId;
+            // let userId = req.params.userId;
             let taskId = req.params.taskId;
             let taskData = req.body;
-            service.editTask(userId, taskId, taskData)
+            service.editTask(taskId, taskData)
                 .then(
                     (result) => {
                         res.send(result);

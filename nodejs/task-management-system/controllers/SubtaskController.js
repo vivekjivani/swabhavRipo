@@ -49,7 +49,7 @@ class SubtaskController {
             service.editTask(userId, taskId, subtaskId, subtaskData)
                 .then(
                     (result) => {
-                        // res.send(result);
+                        res.send(result);
                     }
                 )
                 .catch(
@@ -76,20 +76,21 @@ class SubtaskController {
         //         );
         // });
 
-        // this._app.delete('/api/v1/user/:userId/tasks/:taskId', (req, res) => {
-        //     let userId = req.params.userId;
-        //     let taskId = req.params.taskId;
-        //     service.deleteTaskById(userId, taskId)
-        //         .then(
-        //             (result) => {
-        //                 res.send(result);
-        //             }
-        //         ).catch(
-        //             (error) => {
-        //                 res.send(error);
-        //             }
-        //         );
-        // })
+        this._app.delete('/api/v1/user/:userId/tasks/:taskId/subtask/:subtaskId', (req, res) => {
+            let userId = req.params.userId;
+            let taskId = req.params.taskId;
+            let subtaskId = req.params.subtaskId;
+            service.deleteSubtaskById(userId, taskId, subtaskId)
+                .then(
+                    (result) => {
+                        res.send(result);
+                    }
+                ).catch(
+                    (error) => {
+                        res.send(error);
+                    }
+                );
+        })
     }
 }
 

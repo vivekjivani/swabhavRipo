@@ -7,7 +7,7 @@ class UserService {
     getUserId(email, password) {
         return new Promise((resolve, reject) => {
             userModel
-                .findOne({ emailId: email, password: password})
+                .findOne({ emailId: email, password: password })
                 .select({ _id: 1 })
                 .exec((error, userId) => {
                     if (error) {
@@ -22,18 +22,29 @@ class UserService {
 
     registerUser(userData) {
         return new Promise((resolve, reject) => {
-            let user = new userModel(userData);
-            user.save()
-                .then(
-                    (result) => {
-                        resolve(result);
-                    }
-                )
-                .catch(
-                    (error) => {
+            userModel.findOne({ isDelete: false, emailId: userData.emailId })
+                .exec((error, response) => {
+                    if (error) {
                         reject(error);
                     }
-                );
+                    if (response) {
+                        reject("mailId Already registered");
+                    }
+                    if (!error && !response) {
+                        let user = new userModel(userData);
+                        user.save()
+                            .then(
+                                (result) => {
+                                    resolve(result);
+                                }
+                            )
+                            .catch(
+                                (error) => {
+                                    reject(error);
+                                }
+                            );
+                    }
+                });
         });
     }
 

@@ -51,9 +51,9 @@ class TaskService {
         return new Promise((resolve, reject) => {
             userModel.findOne({ _id: userId, 'Task._id': taskId }, { Task: { $elemMatch: { _id: taskId } } })
                 .select({
-                    _id:0,
-                    'Task._id':0,
-                 })
+                    _id: 0,
+                    'Task._id': 0,
+                })
                 .exec()
                 .then(
                     (response) => {
@@ -68,16 +68,22 @@ class TaskService {
         });
     }
 
-    editTask(userId, taskId, taskData) {
+    editTask(taskId, taskData) {
         return new Promise((resolve, reject) => {
             userModel.updateOne(
                 {
-                    '_id': userId,
-                    'Task._id': taskId
+                    Task: { $elemMatch: { _id: taskId } }
                 },
                 {
                     $set: {
-                        'Task.$': taskData
+                        'Task.$.title': taskData.title,
+                        'Task.$.description': taskData.description,
+                        'Task.$.startDate': taskData.startDate,
+                        'Task.$.dueDate': taskData.dueDate,
+                        'Task.$.assignee': taskData.assignee,
+                        'Task.$.priority': taskData.priority,
+                        'Task.$.tags': taskData.tags,
+                        'Task.$.isCompleted': taskData.isCompleted
                     }
                 }
             )
@@ -97,13 +103,21 @@ class TaskService {
 
     deleteTaskById(userId, taskId) {
         return new Promise((resolve, reject) => {
-            userModel.remove({ _id: userId, 'Task._id': taskId }, (error) => {
-                if (error) {
-                    reject(error);
-                }
-                resolve('delete success');
-            })
-        });
+            userModel.updateOne(
+                { '_id': userId, 'Task._id': taskId }, { $pull: { Task: { '_id': taskId } } })
+                .exec()
+                .then(
+                    (response) => {
+                        resolve(response);
+                        // resolve('delete success');
+                    }
+                )
+                .catch(
+                    (error) => {
+                        reject(error);
+                    }
+                );
+        })
     }
 }
 

@@ -22,7 +22,6 @@ let usersSchema = new schema({
     },
     emailId: {
         type: String,
-        unique: true,
         required: [true, 'Why not Email?'],
         trim: true
     },
