@@ -52,7 +52,7 @@ class TaskController {
        
         /**
          * @swagger
-         *  /api/v1/user/{userId}/task:
+         *  /api/v1/user/{userId}/tasks:
          *   get:
          *     tags:
          *       - TaskController
@@ -86,7 +86,7 @@ class TaskController {
 
         /**
          * @swagger
-         * /api/v1/user/{userId}/task:
+         * /api/v1/user/{userId}/tasks:
          *   post:
          *     tags:
          *       - TaskController
@@ -126,7 +126,7 @@ class TaskController {
 
          /**
          * @swagger
-         * /api/v1/user/{userId}/task/{taskId}:
+         * /api/v1/user/{userId}/tasks/{taskId}:
          *   put:
          *     tags:
          *       - TaskController
@@ -172,7 +172,7 @@ class TaskController {
 
          /**
          * @swagger
-         * /api/v1/user/{userId}/task/{taskId}:
+         * /api/v1/user/{userId}/tasks/{taskId}:
          *   get:
          *     tags:
          *       - TaskController
@@ -211,7 +211,7 @@ class TaskController {
 
         /**
          * @swagger
-         * /api/v1/user/{userId}/task/{taskId}:
+         * /api/v1/user/{userId}/tasks/{taskId}:
          *   delete:
          *     tags:
          *       - TaskController

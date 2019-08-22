@@ -1,3 +1,4 @@
+
 var app = angular.module('task.management.system', ['task.service', 'ngRoute']);
 
 app.config(function ($routeProvider) {
@@ -13,6 +14,14 @@ app.config(function ($routeProvider) {
         .when("/subTask", {
             templateUrl: "./fragment/subTask.html",
             controller: "SubTaskController"
+        })
+        .when("/addTask",{
+            templateUrl: "./fragment/addTask.html",
+            controller: "AddTaskController"
+        })
+        .when("/refresher",{
+            templateUrl: "./fragment/refresher.html",
+            controller: "RefresherController"
         });
 });
 
@@ -26,10 +35,8 @@ app.controller('LoginController', ['$scope', '$location', '$window', 'TaskFactor
         TaskFactory.login($scope.loginInfo)
             .then(
                 (response) => {
-                    // console.log(response.data);
+                    console.log(response.data);
                     if(!response.data._id){
-                        // console.log('arghh');
-                        // $location.path('/');
                         $window.alert('email/password invalied');
                     }else{
                         // console.log('switch page');
@@ -46,12 +53,12 @@ app.controller('LoginController', ['$scope', '$location', '$window', 'TaskFactor
 }]);
 
 app.controller('UserProfileController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+    
     $scope.userId = $window.sessionStorage.userId;
     TaskFactory.getUserData($scope.userId)
         .then(
             (result) => {
                 console.log(result.data[0]);
-                $window.sessionStorage.user = result.data[0];
                 $scope.user = result.data[0];
             }
         )
@@ -61,10 +68,43 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
             }
         );
 
-    $scope.displaySubTasks = function (){
+    TaskFactory.getUserTask($scope.userId)
+            .then(
+                (result)=>{
+                    console.log(result.data);
+                    $scope.tasks = result.data;
+                }
+            )
+            .catch(
+                (error) => {
+                    console.log(error);
+                }
+            );
+    
+    
+    $scope.addTask = function(){
+        $location.path('/addTask');
+    }
+            
+    $scope.displaySubTasks = function (task_id){
+        $window.sessionStorage.taskId = task_id;
         $location.path('/subTask');
     }
 
+    $scope.deleteTask = function(taskId){
+        TaskFactory.deleteTask($window.sessionStorage.userId, taskId)
+            .then(
+                (result) => {
+                    console.log(result);
+                    $location.path('/refresher');
+                }
+            )
+            .catch(
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
     $scope.logout= function(){
         $window.sessionStorage.user = null;
         $window.sessionStorage.userId = null;
@@ -72,8 +112,51 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
     }
 }]);
 
-app.controller('UserProfileController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
-    $scope.user = $window.sessionStorage.user;
-    
+app.controller('SubTaskController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+    $scope.userId = $window.sessionStorage.userId;
+    $scope.taskId = $window.sessionStorage.taskId;
+    console.log($scope.userId, $scope.taskId);
+    TaskFactory.getAllSubtask($scope.userId, $scope.taskId)
+        .then(
+            (result) => {
+                console.log(result.data);
+                $scope.subTasks= result.data;
+            }
+        )
+        .catch(
+            (error)=>{
+                console.log(error);
+            }
+        );
 }]);
 
+app.controller('AddTaskController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+    $scope.taskData = {
+        title: "",
+        description: "",
+        startDate: "",
+        dueDate: "",
+        assignee: ""
+    }
+    $scope.userId = $window.sessionStorage.userId;
+    $scope.taskId = $window.sessionStorage.taskId;
+
+    $scope.addTask = function(){
+        TaskFactory.addTask($scope.userId, $scope.taskData)
+        .then(
+            (result) => {
+                $location.path('/userProfile');
+                console.log(result);
+            }
+        )
+        .catch(
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
+}]);
+
+app.controller('RefresherController', ['$location', function($location) {
+    $location.path('/userProfile');
+}]);

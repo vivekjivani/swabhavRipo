@@ -5,7 +5,7 @@
         </div>
         <div style="display: inline-block">
                 <button class="btn btn-default">Profile</button>
-                <button class="btn btn-default">Add Task</button>
+                <button class="btn btn-default" ng-click="addTask()">Add Task</button>
         </div>
         <div style="display: inline-block">
             <button type="button" class="btn btn-default" ng-click="logout()">Logout</button></button>
@@ -13,16 +13,16 @@
         <hr>
     </div>
     <div class="container">
-        <div style="width:30rem; background-color: rgb(231, 231, 102); padding: 20px" ng-repeat="task in user.Task">
+        <div style="width:30rem; background-color: rgb(231, 231, 102); padding: 20px; display: inline-block; margin: 10px" ng-repeat="task in tasks">
             <div>
                 <!-- <lable> Title: </lable> -->
                 <h4>{{ task.title }}</h4>
                 <lable> Description: </label>
                 <p>{{ task.description }}</p>
                 <div>
-                    <button class="btn btn-default" ng-click="displaySubTasks()">Sub-tasks</button>
+                    <button class="btn btn-default" ng-click="displaySubTasks(task._id)">Sub-tasks</button>
                     <button class="btn btn-default" ng-click="">Edit</button>
-                    <button class="btn btn-default">Delete</button>
+                    <button class="btn btn-default" ng-click="deleteTask(task._id)">Delete</button>
                 </div>
             </div>
         </div>

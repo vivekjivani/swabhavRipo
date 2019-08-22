@@ -51,7 +51,12 @@ class UserService {
     getUser(id) {
         return new Promise((resolve, reject) => {
             let select = {
-                _id: 0
+                _id: 0,
+                userName: 1,
+                address:1,
+                birthDate: 1,
+                emailId: 1,
+                phone:1
             };
             userModel
                 .find({ isDelete: false })
