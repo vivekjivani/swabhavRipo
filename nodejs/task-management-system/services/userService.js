@@ -28,14 +28,14 @@ class UserService {
                         reject(error);
                     }
                     if (response) {
-                        reject("mailId Already registered");
+                        resolve("emailId Already registered");
                     }
                     if (!error && !response) {
                         let user = new userModel(userData);
                         user.save()
                             .then(
                                 (result) => {
-                                    resolve(result);
+                                    resolve("user registered.");
                                 }
                             )
                             .catch(

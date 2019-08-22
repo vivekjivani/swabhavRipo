@@ -12,25 +12,21 @@ const service = require('../services/userService');
  * definitions:
  *      user:
  *          properties:
- *              firstName:
- *                  type: string
- *              lastName:
+ *              userName:
  *                  type: string
  *              gender:
  *                  type: string
  *              birthOfDate:
- *                  type: date
- *              contactNo:
- *                  type: number
- *              country:
  *                  type: string
- *              state:
+ *              phone:
+ *                  type: number
+ *              street:
  *                  type: string
  *              city:
  *                  type: string
- *              street:
+ *              state:
  *                  type: string
- *              houseNumber:
+ *              country:
  *                  type: string
  *              emailId:
  *                  type: string
@@ -38,25 +34,21 @@ const service = require('../services/userService');
  *                  type: string  
  *      userUpdate:
  *          properties:
- *              firstName:
- *                  type: string
- *              lastName:
+ *              userName:
  *                  type: string
  *              gender:
  *                  type: string
  *              birthOfDate:
  *                  type: date
- *              contactNo:
+ *              phone:
  *                  type: number
- *              country:
- *                  type: string
- *              state:
+ *              street:
  *                  type: string
  *              city:
  *                  type: string
- *              street:
+ *              state:
  *                  type: string
- *              houseNumber:
+ *              country:
  *                  type: string
  *              emailId:
  *                  type: string      
@@ -77,11 +69,11 @@ class UserController {
     routeHandler() {
         /**
          * @swagger
-         * /api/v1/login:
+         * /api/v1/user/login:
          *   post:
          *     tags:
          *       - UserController
-         *     description: Returns a user's id
+         *     description: Returns user's id
          *     produces:
          *       - application/json
          *     parameters:
@@ -93,7 +85,11 @@ class UserController {
          *           $ref: '#/definitions/userLogin'
          *     responses:
          *       200:
-         *         description: user's id
+         *         description: ok.
+         *       401:
+         *         description: authentication information is missing or invalid.
+         *       404:
+         *         description: A user with specified ID was not found.
          */
 
         //login
@@ -113,10 +109,10 @@ class UserController {
         });
 
         //logout
-        this._app.post('/api/v1/user/:userId/logout', (req, res) => {
-            let userId = req.params.userId;
-            res.send('logout..');
-        })
+        // this._app.post('/api/v1/user/:userId/logout', (req, res) => {
+        //     let userId = req.params.userId;
+        //     res.send('logout..');
+        // })
 
         /**
          * @swagger
@@ -153,7 +149,7 @@ class UserController {
 
          /**
          * @swagger
-         * /api/v1/register:
+         * /api/v1/user:
          *   post:
          *     tags:
          *       - UserController

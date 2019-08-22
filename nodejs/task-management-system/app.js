@@ -3,6 +3,7 @@ const express = require('express');
 //middlewares import
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const swaggerJSDoc = require('swagger-jsdoc');
 
 //controllers import
 const UserController = require('./controllers/UserController');
@@ -33,6 +34,27 @@ let app = express();
 
 const PORT = 9090;
 
+
+let swaggerDefinition = {
+    info: {
+        title: 'taskManagement API documentation',
+        version: '1.0.0',
+        description: '<h2>CopyRight &copy; SwabhavTechlabs<h2>',
+    },
+    host: `localhost:${PORT}`,
+    basePath: '/',
+};
+var options = {
+    swaggerDefinition: swaggerDefinition,
+    apis: ['./controllers/*.js'],
+};
+var swaggerSpec = swaggerJSDoc(options);
+app.get('/swagger.json', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpec);
+});
+
+app.use(express.static('public'));
 app.use(cors());
 app.use(bodyParser.json());
 

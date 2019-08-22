@@ -13,7 +13,7 @@ const service = require('../services/taskService');
  * definitions:
  *      task:
  *          properties:
- *              tittle:
+ *              title:
  *                  type: string
  *              discription:
  *                  type: string
@@ -27,7 +27,7 @@ const service = require('../services/taskService');
  *                  type: string
  *      taskUpdate:
  *          properties:
- *              tittle:
+ *              title:
  *                  type: string
  *              discription:
  *                  type: string
