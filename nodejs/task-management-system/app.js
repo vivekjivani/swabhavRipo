@@ -11,8 +11,7 @@ const TaskController = require('./controllers/TaskController');
 const SubtaskController = require('./controllers/SubtaskController');
 
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://admin:root@cluster0-sjbot.mongodb.net/"
-    + "task_managemnet_system?retryWrites=true&w=majority";
+const uri = "mongodb+srv://admin:root@cluster0-bd9bp.mongodb.net/task-management-system?retryWrites=true&w=majority";
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);

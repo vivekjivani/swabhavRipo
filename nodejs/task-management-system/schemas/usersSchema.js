@@ -36,7 +36,10 @@ let usersSchema = new schema({
         required: [true, 'Why not Password?'],
         trim: true
     },
-    isDelete: Boolean,
+    isDelete: {
+        type: Boolean,
+        default: false
+    },
     Task: [
         {
             title: String,

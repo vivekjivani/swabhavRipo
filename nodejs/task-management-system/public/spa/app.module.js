@@ -19,6 +19,14 @@ app.config(function ($routeProvider) {
             templateUrl: "./fragment/addTask.html",
             controller: "AddTaskController"
         })
+        .when("/registration",{
+            templateUrl: "./fragment/registration.html",
+            controller: "RegistrationController"
+        })
+        .when("/addSubTask",{
+            templateUrl: "./fragment/addSubTask.html",
+            controller: "AddSubTaskController"
+        })
         .when("/refresher",{
             templateUrl: "./fragment/refresher.html",
             controller: "RefresherController"
@@ -30,6 +38,7 @@ app.controller('LoginController', ['$scope', '$location', '$window', 'TaskFactor
         emailId: "",
         password: ""
     }
+
     $scope.login = function () {
         // console.log($scope.loginInfo);
         TaskFactory.login($scope.loginInfo)
@@ -139,7 +148,6 @@ app.controller('AddTaskController', ['$scope', '$location', '$window', 'TaskFact
         assignee: ""
     }
     $scope.userId = $window.sessionStorage.userId;
-    $scope.taskId = $window.sessionStorage.taskId;
 
     $scope.addTask = function(){
         TaskFactory.addTask($scope.userId, $scope.taskData)
@@ -154,6 +162,63 @@ app.controller('AddTaskController', ['$scope', '$location', '$window', 'TaskFact
                 console.log(error);
             }
         );
+    }
+}]);
+
+app.controller('RegistrationController',['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+    $scope.user = {
+        userName: "",
+        gender: "",
+        birthDate: "",
+        phone: "",
+        emailId: "",
+        street: "",
+        city: "",
+        state: "",
+        country: "",
+        password: ""
+    };
+
+    $scope.register = function() {
+        console.log($scope.user);
+        TaskFactory.registerUser($scope.user)
+            .then(
+                (result) => {
+                    console.log(result);
+                    $location.path('/');
+                }
+            )
+            .catch(
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
+}]);
+
+app.controller("AddSubTaskController", ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+    $scope.subTaskData = {
+        title: "",
+        description: "",
+        startDate: "",
+        dueDate: "",
+        assignee: ""
+    }
+    $scope.userId = $window.sessionStorage.userId;
+    $scope.taskId = $window.sessionStorage.taskId;
+    $scope.addSubTask = function(){
+        console.log($scope.userId, $scope.taskId);
+        TaskFactory.addSubTask($scope.userId, $scope.taskId, $scope.subTaskData)
+            .then(
+                (result)=>{
+                    console.log(result);
+                }
+            )
+            .catch(
+                (error)=>{
+                    console.log(error);
+                }
+            );
     }
 }]);
 

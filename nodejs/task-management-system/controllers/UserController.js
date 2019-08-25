@@ -16,20 +16,23 @@ const service = require('../services/userService');
  *                  type: string
  *              gender:
  *                  type: string
- *              birthOfDate:
+ *              birthDate:
  *                  type: string
  *              phone:
  *                  type: number
- *              street:
- *                  type: string
- *              city:
- *                  type: string
- *              state:
- *                  type: string
- *              country:
- *                  type: string
  *              emailId:
  *                  type: string
+ *              address:
+ *                  type: object
+ *                  properties:
+ *                    street:
+ *                      type: string
+ *                    city:
+ *                      type: string
+ *                    state:
+ *                      type: string
+ *                    country:
+ *                      type: string
  *              password:
  *                  type: string  
  *      userUpdate:
@@ -168,7 +171,7 @@ class UserController {
          *         description: Successfully created
          */
 
-        // add user  {{ Addresss issue....... don't forget to fix }}
+        // add user
         this._app.post('/api/v1/user', (req, res) => {
             let user = req.body;
             service.registerUser(user)

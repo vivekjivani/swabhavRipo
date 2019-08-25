@@ -24,19 +24,28 @@ class SubtaskService {
 
     getAllSubtask(userId, taskId) {
         return new Promise((resolve, reject) => {
+
             let select = {
                 _id: 0,
                 Task: 1
             }
             userModel.find()
-                .where({ _id: userId, 'Task._id': taskId })
+                .where('_id')
+                .equals(userId)
                 .select(select)
                 .exec()
                 .then(
                     (response) => {
-                        let result = response[0].Task[0].SubTask;
-                        resolve(result);
-                        // resolve(response);
+                        let task = response[0].Task
+                        let subtask = task.forEach(element => {
+                            if(element._id == taskId){
+                                console.log(element.SubTask);
+
+                                resolve( element.SubTask);
+                            }
+                        });
+                        // console.log(subtask);
+                        // resolve(subtask);
                     }
                 )
                 .catch(
@@ -44,6 +53,42 @@ class SubtaskService {
                         reject(error);
                     }
                 )
+            
+
+            // let select = {
+            //     _id: 0,
+            //     Task: 1
+            // }
+            // userModel.findOne({ '_id': userId }, { task : { $elemMatch : { _id: taskId } } })
+            //     .exec()
+            //     .then(
+            //         (response) => {
+            //             let result = response.Task[0].SubTask;
+            //             resolve(result);
+            //             // resolve(response);
+            //         }
+            //     )
+            //     .catch(
+            //         (error) => {
+            //             reject(error);
+            //         }
+            //     )
+            // userModel.find()
+            //     .where({ _id: userId, 'Task._id': taskId })
+            //     .select(select)
+            //     .exec()
+            //     .then(
+            //         (response) => {
+            //             let result = response[0].Task[0].SubTask;
+            //             resolve(result);
+            //             // resolve(response);
+            //         }
+            //     )
+            //     .catch(
+            //         (error) => {
+            //             reject(error);
+            //         }
+            //     )
         });
     }
 

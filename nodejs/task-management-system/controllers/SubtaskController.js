@@ -12,9 +12,9 @@ const service = require('../services/SubtaskService');
  * definitions:
  *      subTask:
  *          properties:
- *              tittle:
+ *              title:
  *                  type: string
- *              discription:
+ *              description:
  *                  type: string
  *              startDate:
  *                  type: date
@@ -24,9 +24,9 @@ const service = require('../services/SubtaskService');
  *                  type: string
  *      subTaskUpdate:
  *          properties:
- *              tittle:
+ *              title:
  *                  type: string
- *              discription:
+ *              description:
  *                  type: string
  *              startDate:
  *                  type: date
@@ -47,7 +47,7 @@ class SubtaskController {
 
         /**
          * @swagger
-         *  /api/v1/user/{userId}/task/{taskId}/subTask:
+         *  /api/v1/user/{userId}/tasks/{taskId}/subTask:
          *   get:
          *     tags:
          *       - SubTaskController
@@ -85,7 +85,7 @@ class SubtaskController {
 
         /**
          * @swagger
-         * /api/v1/user/{userId}/task/{taskId}/subTask:
+         * /api/v1/user/{userId}/tasks/{taskId}/subTask:
          *   post:
          *     tags:
          *       - SubTaskController
@@ -112,7 +112,7 @@ class SubtaskController {
          *         description: Successfully Add Sub Task
          */
         //add subtask
-        this._app.post('/api/v1/user/:userId/tasks/:taskId/subtask', (req, res) => {
+        this._app.post('/api/v1/user/:userId/tasks/:taskId/subTask', (req, res) => {
             let userId = req.params.userId;
             let taskId = req.params.taskId;
             let subtaskData = req.body;
@@ -130,7 +130,7 @@ class SubtaskController {
 
         /**
          * @swagger
-         * /api/v1/user/{userId}/task/{taskId}/subTask/{subTaskId}:
+         * /api/v1/user/{userId}/tasks/{taskId}/subTask/{subTaskId}:
          *   put:
          *     tags:
          *       - SubTaskController
@@ -180,7 +180,7 @@ class SubtaskController {
 
         // /**
         //  * @swagger
-        //  * /api/v1/user/{userId}/task/{taskId}/subTask/{subTaskId}:
+        //  * /api/v1/user/{userId}/tasks/{taskId}/subTask/{subTaskId}:
         //  *   get:
         //  *     tags:
         //  *       - SubTaskController
@@ -222,7 +222,7 @@ class SubtaskController {
 
         /**
          * @swagger
-         * /api/v1/user/{userId}/task/{taskId}/subTask/{subTaskId}:
+         * /api/v1/user/{userId}/tasks/{taskId}/subTask/{subTaskId}:
          *   delete:
          *     tags:
          *       - SubTaskController

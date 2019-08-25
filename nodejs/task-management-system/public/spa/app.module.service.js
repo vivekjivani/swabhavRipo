@@ -64,6 +64,7 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
 
     service.getAllSubtask = function(userId, taskId){
         return $q((resolve, reject) => {
+            console.log(userId, taskId);
             var url ="http://localhost:9090/api/v1/user/"+userId+"/tasks/"+taskId+"/subtask";
             $http.get(url)
                 .then(
@@ -84,6 +85,40 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
             console.log(userId, taskId);
             var url ="http://localhost:9090/api/v1/user/"+userId+"/tasks/"+taskId;
             $http.delete(url)
+                .then(
+                    (response) => {
+                        resolve(response);
+                    }
+                )
+                .catch(
+                    (error) => {
+                        reject(error);
+                    }
+                );
+        });
+    }
+
+    service.addSubTask = function(userId, taskId, subTaskData){
+        return $q((resolve, reject) => {
+            var url = 'http://localhost:9090/api/v1/user/'+userId+"/tasks/"+taskId+"/subTask";
+            $http.post(url, subTaskData)
+                .then(
+                    (response) => {
+                        resolve(response);
+                    }
+                )
+                .catch(
+                    (error) => {
+                        reject(error);
+                    }
+                );
+        });
+    }
+
+    service.registerUser = function(userData){
+        return $q((resolve, reject) => {
+            var url = "http://localhost:9090/api/v1/user";
+            $http.post(url, userData)
                 .then(
                     (response) => {
                         resolve(response);
