@@ -1,4 +1,5 @@
 const service = require('../services/userService');
+const jwt = require('jsonwebtoken');
 
 /**
  * @swagger
@@ -69,6 +70,17 @@ class UserController {
         this.routeHandler();
     }
 
+    varifyToken(req, res, next) {
+        // console.log(req.headers.authorization);
+        const bearerHearder = req.headers.authorization;
+        if (bearerHearder) {
+            const bearer = bearerHearder.split(' ');
+            const bearerToken = bearer[1];
+            req.token = bearerToken;
+            next();
+        }
+    }
+
     routeHandler() {
         /**
          * @swagger
@@ -102,7 +114,14 @@ class UserController {
             service.getUserId(email, password)
                 .then(
                     (result) => {
-                        res.send(result);
+                        jwt.sign({
+                            user: result
+                        }, 'eliover', (err, token) => {
+                            res.json({
+                                token,
+                                result
+                            });
+                        });
                     }
                 ).catch(
                     (err) => {
@@ -136,21 +155,28 @@ class UserController {
          *         description: A single User
          */
         // get user by Id
-        this._app.get('/api/v1/user/:userId', (req, res) => {
-            service.getUser(req.params.userId)
-                .then(
-                    (result) => {
-                        res.send(result);
-                    }
-                ).catch(
-                    (error) => {
-                        res.send(error);
-                    }
-                );
+        this._app.get('/api/v1/user/:userId', this.varifyToken, (req, res) => {
+            jwt.verify(req.token, 'eliover', (err, data) => {
+                if (err) {
+                    console.log(err);
+                    res.send("forbidden");
+                } else {
+                    service.getUser(req.params.userId)
+                        .then(
+                            (result) => {
+                                res.send(result);
+                            }
+                        ).catch(
+                            (error) => {
+                                res.send(error);
+                            }
+                        );
+                }
+            });
         });
 
 
-         /**
+        /**
          * @swagger
          * /api/v1/user:
          *   post:
@@ -211,23 +237,31 @@ class UserController {
          *         description: Successfully updated
          */
         //edit user
-        this._app.put('/api/v1/user/:userId', (req, res) => {
-            let userData = req.body;
-            let userId = req.params.userId;
-            service.editUser(userData, userId)
-                .then(
-                    (result) => {
-                        res.send(result);
-                    }
-                )
-                .catch(
-                    (error) => {
-                        res.send(error);
-                    }
-                );
+        this._app.put('/api/v1/user/:userId', this.varifyToken, (req, res) => {
+            jwt.verify(req.token, 'eliover', (err, data) => {
+                if (err) {
+                    console.log(err);
+                    res.send("forbidden");
+                } else {
+
+                    let userData = req.body;
+                    let userId = req.params.userId;
+                    service.editUser(userData, userId)
+                        .then(
+                            (result) => {
+                                res.send(result);
+                            }
+                        )
+                        .catch(
+                            (error) => {
+                                res.send(error);
+                            }
+                        );
+                }
+            });
         });
 
-        
+
         /**
          * @swagger
          * /api/v1/user/{userId}:
@@ -247,32 +281,29 @@ class UserController {
          *         description: Successfully deleted
          */
         //deleteUSer
-        this._app.delete('/api/v1/user/:userId/delete', (req, res) => {
-            let userId = req.params.userId;
-            service.deleteUser(userId)
-                .then(
-                    (result) => {
-                        res.send(result);
-                    }
-                ).catch(
-                    (error) => {
-                        res.send(error);
-                    }
-                );
+        this._app.delete('/api/v1/user/:userId/delete', this.varifyToken, (req, res) => {
+            jwt.verify(req.token, 'eliover', (err, data) => {
+                if (err) {
+                    console.log(err);
+                    res.send("forbidden");
+                } else {
+
+                    let userId = req.params.userId;
+                    service.deleteUser(userId)
+                        .then(
+                            (result) => {
+                                res.send(result);
+                            }
+                        ).catch(
+                            (error) => {
+                                res.send(error);
+                            }
+                        );
+                }
+            });
         });
+
     }
 }
 
 module.exports = UserController;
-
-//rest API should be stateless
-
-        // let authenticationMidware = function (req, res, next) {
-        //     if (req.session && req.session.user) {
-        //         next();
-        //     } else {
-        //         res.send('please, login first!!');
-        //     }
-        // }
-
-           // req.session.reset();

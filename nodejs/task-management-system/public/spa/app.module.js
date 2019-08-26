@@ -45,11 +45,11 @@ app.controller('LoginController', ['$scope', '$location', '$window', 'TaskFactor
             .then(
                 (response) => {
                     console.log(response.data);
-                    if(!response.data._id){
+                    if(!response.data.result._id){
                         $window.alert('email/password invalied');
                     }else{
                         // console.log('switch page');
-                        $window.sessionStorage.userId = response.data._id;
+                        $window.sessionStorage.userId = response.data.result._id;
                         $location.path('/userProfile');
                     }
                 }
