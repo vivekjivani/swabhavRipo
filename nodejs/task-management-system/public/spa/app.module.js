@@ -162,7 +162,7 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
 app.controller('SubTaskController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
     $scope.userId = $window.sessionStorage.userId;
     $scope.taskId = $window.sessionStorage.taskId;
-    console.log($scope.userId, $scope.taskId);
+    // console.log($scope.userId, $scope.taskId);
     $scope.delete = function (subtaskId) {
         // console.log(subtaskId);
         TaskFactory.deleteSubTask($scope.userId, $scope.taskId, subtaskId)
@@ -269,6 +269,7 @@ app.controller("AddSubTaskController", ['$scope', '$location', '$window', 'TaskF
             .then(
                 (result) => {
                     console.log(result);
+                    $location.path("/subTask");
                 }
             )
             .catch(

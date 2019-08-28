@@ -114,7 +114,7 @@ class UserController {
                 .then(
                     (result) => {
                         res.send(result);
-                        console.log(result);
+                        // console.log(result);
                         // jwt.sign({
                         //     user: result
                         // }, 'eliover', (err, token) => {

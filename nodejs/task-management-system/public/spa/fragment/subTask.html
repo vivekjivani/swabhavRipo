@@ -12,8 +12,11 @@
             ng-repeat="subTask in subTasks">
             <div>
                 <h4>{{ subTask.title }}</h4>
-                <lable> Description: </label>
+                <hr style="border: 1px solid black">
+                <label> Description: </label>
                     <p>{{ subTask.description }}</p>
+                <label> Assignee: </label>
+                    <p>{{ subTask.assignee }}</p>
                     <div>
                         <button class="btn btn-default" ng-click="">Edit</button>
                         <button class="btn btn-default" ng-click="delete(subTask._id)">Delete</button>

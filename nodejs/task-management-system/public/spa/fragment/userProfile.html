@@ -18,8 +18,11 @@
             <div>
                 <!-- <lable> Title: </lable> -->
                 <h4>{{ task.title }}</h4>
-                <lable> Description: </label>
+                <hr style="border: 1px solid black"/>
+                <label> Description: </label>
                     <p>{{ task.description }}</p>
+                <label> Assignee: </label>
+                    <p>{{ task.assignee }}</p>
                     <div>
                         <button class="btn btn-default" ng-click="displaySubTasks(task._id)">Sub-tasks</button>
                         <button class="btn btn-default" ng-click="">Edit</button>
