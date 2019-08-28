@@ -1,5 +1,5 @@
 
-var app = angular.module('task.management.system', ['task.service', 'ngRoute']);
+var app = angular.module('task.management.system', ['task.service', 'ngRoute', 'ngStorage']);
 
 app.config(function ($routeProvider) {
     $routeProvider
@@ -33,7 +33,7 @@ app.config(function ($routeProvider) {
         });
 });
 
-app.controller('LoginController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+app.controller('LoginController', ['$scope', '$location', '$window', '$localStorage', 'TaskFactory', function ($scope, $location, $window, $localStorage, TaskFactory) {
     $scope.loginInfo = {
         emailId: "",
         password: ""
@@ -50,6 +50,8 @@ app.controller('LoginController', ['$scope', '$location', '$window', 'TaskFactor
                     }else{
                         // console.log('switch page');
                         $window.sessionStorage.userId = response.data.result._id;
+                        $localStorage.token = response.data.token;
+                        // console.log(response.data.token);
                         $location.path('/userProfile');
                     }
                 }
