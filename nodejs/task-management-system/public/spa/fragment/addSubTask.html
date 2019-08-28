@@ -1,42 +1,43 @@
-
 <div style="margin-left:450px;">
-        <table class="table table-bordered" style="width:500px;">
-            <tbody>
-                <tr>
-                    <td><label>Title</label></td>
-                    <td>:</td>
-                    <td>
-                        <input type="text" name="title" ng-model="subTaskData.title" placeholder="title"/> <br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>Description</label></td>
-                    <td>:</td>
-                    <td>
-                            <input type="text" name="description" ng-model="subTaskData.description" placeholder="description" /><br/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>StaetDate</label></td>
-                    <td>:</td>
-                    <td><input type="date" name="startDate" ng-model="subTaskData.startDate" /><br/></td>
-                </tr>
-                <tr>
-                    <td><label>DueDate</label></td>
-                    <td>:</td>
-                    <td><input type="date" name="dueDate" ng-model="subTaskData.dueData" /><br/></td>
-                </tr>
-                <tr>
-                    <td><label>Assignee</label></td>
-                    <td>:</td>
-                    <td><input type="text" name="assignee" ng-model="subTaskData.assignee" placeholder="assignee name"/><br/></td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <button class="btn btn-default" ng-click="addSubTask()">Add</button>
-                        <a href="#!subTask"><button class="btn btn-default">&lt; Back</button></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="table table-bordered" style="width:500px;">
+        <tbody>
+            <tr>
+                <td><label>Title</label></td>
+                <td>:</td>
+                <td>
+                    <input type="text" name="title" ng-model="subTaskData.title" placeholder="title" /> <br />
+                </td>
+            </tr>
+            <tr>
+                <td><label>Description</label></td>
+                <td>:</td>
+                <td>
+                    <input type="text" name="description" ng-model="subTaskData.description"
+                        placeholder="description" /><br />
+                </td>
+            </tr>
+            <tr>
+                <td><label>StaetDate</label></td>
+                <td>:</td>
+                <td><input type="date" name="startDate" ng-model="subTaskData.startDate" /><br /></td>
+            </tr>
+            <tr>
+                <td><label>DueDate</label></td>
+                <td>:</td>
+                <td><input type="date" name="dueDate" ng-model="subTaskData.dueData" /><br /></td>
+            </tr>
+            <tr>
+                <td><label>Assignee</label></td>
+                <td>:</td>
+                <td><input type="text" name="assignee" ng-model="subTaskData.assignee"
+                        placeholder="assignee name" /><br /></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <button class="btn btn-default" ng-click="addSubTask()">Add</button>
+                    <a href="#!subTask"><button class="btn btn-default">&lt; Back</button></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

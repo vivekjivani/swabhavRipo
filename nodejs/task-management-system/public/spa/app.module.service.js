@@ -1,11 +1,12 @@
 var taskService = angular.module('task.service', []);
 
 taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
+
     var service = {};
 
     service.login = function (loginInfo) {
         return $q((resolve, reject) => {
-            var url = 'http://localhost:9090/api/v1/user/login';
+            var url = '/api/v1/user/login';
             let data = loginInfo;
             $http.post(url, data)
                 .then((response) => {
@@ -19,7 +20,7 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
 
     service.getUserTask = function (userId) {
         return $q((resolve, reject) => {
-            var url = 'http://localhost:9090/api/v1/user/'+userId+'/tasks';
+            var url = '/api/v1/user/' + userId + '/tasks';
             $http.get(url)
                 .then((response) => {
                     resolve(response);
@@ -30,9 +31,9 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
-    service.getUserData = function(userId){
+    service.getUserData = function (userId) {
         return $q((resolve, reject) => {
-            var url = 'http://localhost:9090/api/v1/user/'+userId;
+            var url = '/api/v1/user/' + userId;
             $http.get(url)
                 .then(
                     (response) => {
@@ -46,9 +47,9 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
-    service.updateUser =function(userId, userData){
+    service.updateUser = function (userId, userData) {
         return $q((resolve, reject) => {
-            var url = 'http://localhost:9090/api/v1/user/'+userId;
+            var url = '/api/v1/user/' + userId;
             $http.put(url, userData)
                 .then(
                     (response) => {
@@ -62,9 +63,9 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
-    service.addTask = function(userId, taskData){
+    service.addTask = function (userId, taskData) {
         return $q((resolve, reject) => {
-            var url = 'http://localhost:9090/api/v1/user/'+userId+'/tasks';
+            var url = '/api/v1/user/' + userId + '/tasks';
             $http.post(url, taskData)
                 .then(
                     (response) => {
@@ -78,10 +79,10 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
-    service.getAllSubtask = function(userId, taskId){
+    service.getAllSubtask = function (userId, taskId) {
         return $q((resolve, reject) => {
-            console.log(userId, taskId);
-            var url ="http://localhost:9090/api/v1/user/"+userId+"/tasks/"+taskId+"/subtask";
+            // console.log(userId, taskId);
+            var url = "/api/v1/user/" + userId + "/tasks/" + taskId + "/subtask";
             $http.get(url)
                 .then(
                     (response) => {
@@ -96,10 +97,10 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
-    service.deleteTask = function(userId, taskId){
+    service.deleteTask = function (userId, taskId) {
         return $q((resolve, reject) => {
-            console.log(userId, taskId);
-            var url ="http://localhost:9090/api/v1/user/"+userId+"/tasks/"+taskId;
+            // console.log(userId, taskId);
+            var url = "/api/v1/user/" + userId + "/tasks/" + taskId;
             $http.delete(url)
                 .then(
                     (response) => {
@@ -114,9 +115,9 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
-    service.addSubTask = function(userId, taskId, subTaskData){
+    service.addSubTask = function (userId, taskId, subTaskData) {
         return $q((resolve, reject) => {
-            var url = 'http://localhost:9090/api/v1/user/'+userId+"/tasks/"+taskId+"/subTask";
+            var url = '/api/v1/user/' + userId + "/tasks/" + taskId + "/subTask";
             $http.post(url, subTaskData)
                 .then(
                     (response) => {
@@ -131,9 +132,9 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
-    service.deleteSubTask = function(userId, taskId, subtaskId){
+    service.deleteSubTask = function (userId, taskId, subtaskId) {
         return $q((resolve, reject) => {
-            var url = 'http://localhost:9090/api/v1/user/'+userId+"/tasks/"+taskId+"/subTask/"+subtaskId;
+            var url = '/api/v1/user/' + userId + "/tasks/" + taskId + "/subTask/" + subtaskId;
             $http.delete(url)
                 .then(
                     (response) => {
@@ -148,9 +149,9 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
-    service.registerUser = function(userData){
+    service.registerUser = function (userData) {
         return $q((resolve, reject) => {
-            var url = "http://localhost:9090/api/v1/user";
+            var url = "/api/v1/user";
             $http.post(url, userData)
                 .then(
                     (response) => {

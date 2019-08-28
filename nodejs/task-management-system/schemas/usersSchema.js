@@ -40,31 +40,27 @@ let usersSchema = new schema({
         type: Boolean,
         default: false
     },
-    Task: [
-        {
+    Task: [{
+        title: String,
+        description: String,
+        startDate: Date,
+        dueDate: Date,
+        assignee: String,
+        priority: {
+            type: String,
+            enum: ['Important', 'Idel'],
+        },
+        tags: String,
+        isCompleted: Boolean,
+        SubTask: [{
             title: String,
             description: String,
             startDate: Date,
             dueDate: Date,
             assignee: String,
-            priority: {
-                type: String,
-                enum: ['Important', 'Idel'],
-            },
-            tags: String,
-            isCompleted: Boolean,
-            SubTask: [
-                {
-                    title: String,
-                    description: String,
-                    startDate: Date,
-                    dueDate: Date,
-                    assignee: String,
-                    isCompleted: Boolean
-                }
-            ]
-        }
-    ]
+            isCompleted: Boolean
+        }]
+    }]
 });
 
 let UserModel = mongoose.model('user', usersSchema);

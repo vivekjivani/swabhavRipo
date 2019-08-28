@@ -1,19 +1,18 @@
 const userModel = require('../schemas/usersSchema');
 
 class SubtaskService {
-    constructor() {
-    }
+    constructor() {}
 
     addSubtask(userId, taskId, subtaskData) {
         return new Promise((resolve, reject) => {
-            userModel.updateOne(
-                { _id: userId, 'Task._id': taskId },
-                {
-                    $push: {
-                        'Task.$.SubTask': subtaskData
-                    }
+            userModel.updateOne({
+                _id: userId,
+                'Task._id': taskId
+            }, {
+                $push: {
+                    'Task.$.SubTask': subtaskData
                 }
-            ).exec((error, response) => {
+            }).exec((error, response) => {
                 if (error) {
                     reject(error);
                 }
@@ -38,10 +37,10 @@ class SubtaskService {
                     (response) => {
                         let task = response[0].Task
                         let subtask = task.forEach(element => {
-                            if(element._id == taskId){
+                            if (element._id == taskId) {
                                 console.log(element.SubTask);
 
-                                resolve( element.SubTask);
+                                resolve(element.SubTask);
                             }
                         });
                         // console.log(subtask);
@@ -53,7 +52,7 @@ class SubtaskService {
                         reject(error);
                     }
                 )
-            
+
 
             // let select = {
             //     _id: 0,
@@ -99,7 +98,10 @@ class SubtaskService {
                 Task: 1
             }
             userModel.find()
-                .where({ _id: userId, 'Task._id': taskId })
+                .where({
+                    _id: userId,
+                    'Task._id': taskId
+                })
                 .select(select)
                 .exec()
                 .then(
@@ -145,21 +147,21 @@ class SubtaskService {
 
     deleteSubtaskById(userId, taskId, subtaskId) {
         return new Promise((resolve, reject) => {
-            userModel.updateOne(
-                {
-                    _id: userId,
-                    'Task._id': taskId
-                },
-                {
-                    $pull: {
-                        'Task.$.SubTask': { _id: subtaskId }
+            userModel.updateOne({
+                _id: userId,
+                'Task._id': taskId
+            }, {
+                $pull: {
+                    'Task.$.SubTask': {
+                        _id: subtaskId
                     }
-                }).exec((err, response) => {
-                    if (err) {
-                        reject(err);
-                    }
-                    resolve(response);
-                })
+                }
+            }).exec((err, response) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(response);
+            })
         });
     }
 }

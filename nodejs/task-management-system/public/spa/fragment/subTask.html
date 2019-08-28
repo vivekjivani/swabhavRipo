@@ -8,16 +8,17 @@
         <a href="#!userProfile"><button class="btn btn-default">&lt; Back</button></a>
     </div>
     <div class="container">
-        <div style="width:30rem; background-color: #FFC0CB;padding: 20px; display: inline-block; margin: 10px;" ng-repeat="subTask in subTasks">
-                <div>
-                    <h4>{{ subTask.title }}</h4>
-                    <lable> Description: </label>
+        <div style="width:30rem; background-color: #FFC0CB;padding: 20px; display: inline-block; margin: 10px;"
+            ng-repeat="subTask in subTasks">
+            <div>
+                <h4>{{ subTask.title }}</h4>
+                <lable> Description: </label>
                     <p>{{ subTask.description }}</p>
-                <div>
-                    <button class="btn btn-default" ng-click="">Edit</button>
-                    <button class="btn btn-default" ng-click="delete(subTask._id)">Delete</button>
-                </div>
+                    <div>
+                        <button class="btn btn-default" ng-click="">Edit</button>
+                        <button class="btn btn-default" ng-click="delete(subTask._id)">Delete</button>
+                    </div>
             </div>
-        </div>    
+        </div>
     </div>
 </div>

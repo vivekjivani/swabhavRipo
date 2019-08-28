@@ -1,14 +1,18 @@
 const userModel = require('../schemas/usersSchema');
 
 class UserService {
-    constructor() {
-    }
+    constructor() {}
 
     getUserId(email, password) {
         return new Promise((resolve, reject) => {
             userModel
-                .findOne({ emailId: email, password: password })
-                .select({ _id: 1 })
+                .findOne({
+                    emailId: email,
+                    password: password
+                })
+                .select({
+                    _id: 1
+                })
                 .exec((error, userId) => {
                     if (error) {
                         reject(error);
@@ -22,7 +26,10 @@ class UserService {
 
     registerUser(userData) {
         return new Promise((resolve, reject) => {
-            userModel.findOne({ isDelete: false, emailId: userData.emailId })
+            userModel.findOne({
+                    isDelete: false,
+                    emailId: userData.emailId
+                })
                 .exec((error, response) => {
                     if (error) {
                         reject(error);
@@ -53,13 +60,15 @@ class UserService {
             let select = {
                 _id: 0,
                 userName: 1,
-                address:1,
+                address: 1,
                 birthDate: 1,
                 emailId: 1,
-                phone:1
+                phone: 1
             };
             userModel
-                .find({ isDelete: false })
+                .find({
+                    isDelete: false
+                })
                 .where('_id')
                 .equals(id)
                 .select(select)
@@ -74,18 +83,17 @@ class UserService {
 
     editUser(userData, userId) {
         return new Promise((resolve, reject) => {
-            userModel.updateOne(
-                { _id: userId },
-                {
-                    $set: {
-                        userName: userData.userName,
-                        gender: userData.gender,
-                        address: userData.address,
-                        phone: userData.phone,
-                        emailId: userData.emailId
-                    }
+            userModel.updateOne({
+                _id: userId
+            }, {
+                $set: {
+                    userName: userData.userName,
+                    gender: userData.gender,
+                    address: userData.address,
+                    phone: userData.phone,
+                    emailId: userData.emailId
                 }
-            ).exec((error, response) => {
+            }).exec((error, response) => {
                 if (error) {
                     reject(error);
                 }
@@ -96,14 +104,13 @@ class UserService {
 
     deleteUser(userId) {
         return new Promise((resolve, reject) => {
-            userModel.updateOne(
-                { _id: userId },
-                {
-                    $set: {
-                        isDelete: true
-                    }
+            userModel.updateOne({
+                _id: userId
+            }, {
+                $set: {
+                    isDelete: true
                 }
-            ).exec((error, response) => {
+            }).exec((error, response) => {
                 if (error) {
                     reject(error);
                 }

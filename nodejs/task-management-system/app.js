@@ -17,7 +17,9 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect(uri, { useNewUrlParser: true })
+mongoose.connect(uri, {
+        useNewUrlParser: true
+    })
     .then(
         (result) => {
             console.log('database connected..');
@@ -48,7 +50,7 @@ var options = {
     apis: ['./controllers/*.js'],
 };
 var swaggerSpec = swaggerJSDoc(options);
-app.get('/swagger.json', function(req, res) {
+app.get('/swagger.json', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
 });

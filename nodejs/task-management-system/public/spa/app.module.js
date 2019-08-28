@@ -47,7 +47,7 @@ app.controller('LoginController', ['$scope', '$location', '$window', '$localStor
         TaskFactory.login($scope.loginInfo)
             .then(
                 (response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     if (!response.data._id) {
                         $window.alert('email/password invalied');
                     } else {
@@ -72,7 +72,7 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
     TaskFactory.getUserData($scope.userId)
         .then(
             (result) => {
-                console.log(result.data[0]);
+                // console.log(result.data[0]);
                 $scope.user = result.data[0];
             }
         )
@@ -85,7 +85,7 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
     TaskFactory.getUserTask($scope.userId)
         .then(
             (result) => {
-                console.log(result.data);
+                // console.log(result.data);
                 $scope.tasks = result.data;
             }
         )
@@ -115,11 +115,11 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
     };
 
     $scope.update = function () {
-        console.log($scope.userData);
+        // console.log($scope.userData);
         TaskFactory.updateUser($scope.userId, $scope.userData)
             .then(
                 (result) => {
-                    console.log(result);
+                    // console.log(result);
                     $location.path('/refresher');
                 }
             )
@@ -142,7 +142,7 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
         TaskFactory.deleteTask($window.sessionStorage.userId, taskId)
             .then(
                 (result) => {
-                    console.log(result);
+                    // console.log(result);
                     $location.path('/refresher');
                 }
             )
@@ -167,7 +167,7 @@ app.controller('SubTaskController', ['$scope', '$location', '$window', 'TaskFact
         // console.log(subtaskId);
         TaskFactory.deleteSubTask($scope.userId, $scope.taskId, subtaskId)
             .then((result) => {
-                console.log(result);
+                // console.log(result);
                 $scope.getSubTask();
             })
             .catch((error) => {
@@ -179,7 +179,7 @@ app.controller('SubTaskController', ['$scope', '$location', '$window', 'TaskFact
         TaskFactory.getAllSubtask($scope.userId, $scope.taskId)
             .then(
                 (result) => {
-                    console.log(result.data);
+                    // console.log(result.data);
                     $scope.subTasks = result.data;
                 }
             )
@@ -207,7 +207,7 @@ app.controller('AddTaskController', ['$scope', '$location', '$window', 'TaskFact
             .then(
                 (result) => {
                     $location.path('/userProfile');
-                    console.log(result);
+                    // console.log(result);
                 }
             )
             .catch(
@@ -237,11 +237,11 @@ app.controller('RegistrationController', ['$scope', '$location', '$window', 'Tas
     }
 
     $scope.register = function () {
-        console.log($scope.user);
+        // console.log($scope.user);
         TaskFactory.registerUser($scope.user)
             .then(
                 (result) => {
-                    console.log(result);
+                    // console.log(result);
                     $location.path('/');
                 }
             )
@@ -264,7 +264,7 @@ app.controller("AddSubTaskController", ['$scope', '$location', '$window', 'TaskF
     $scope.userId = $window.sessionStorage.userId;
     $scope.taskId = $window.sessionStorage.taskId;
     $scope.addSubTask = function () {
-        console.log($scope.userId, $scope.taskId);
+        // console.log($scope.userId, $scope.taskId);
         TaskFactory.addSubTask($scope.userId, $scope.taskId, $scope.subTaskData)
             .then(
                 (result) => {
@@ -277,10 +277,6 @@ app.controller("AddSubTaskController", ['$scope', '$location', '$window', 'TaskF
                 }
             );
     }
-}]);
-
-app.controller('EditUserProfileController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
-
 }]);
 
 app.controller('RefresherController', ['$location', function ($location) {

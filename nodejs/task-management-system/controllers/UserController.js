@@ -156,17 +156,17 @@ class UserController {
             //         console.log(err);
             //         res.send("forbidden");
             //     } else {
-                    service.getUser(req.params.userId)
-                        .then(
-                            (result) => {
-                                res.send(result);
-                            }
-                        ).catch(
-                            (error) => {
-                                res.send(error);
-                            }
-                        );
-                // }
+            service.getUser(req.params.userId)
+                .then(
+                    (result) => {
+                        res.send(result);
+                    }
+                ).catch(
+                    (error) => {
+                        res.send(error);
+                    }
+                );
+            // }
             // });
         });
 
@@ -239,19 +239,19 @@ class UserController {
             //         res.send("forbidden");
             //     } else {
 
-                    let userData = req.body;
-                    let userId = req.params.userId;
-                    service.editUser(userData, userId)
-                        .then(
-                            (result) => {
-                                res.send(result);
-                            }
-                        )
-                        .catch(
-                            (error) => {
-                                res.send(error);
-                            }
-                        );
+            let userData = req.body;
+            let userId = req.params.userId;
+            service.editUser(userData, userId)
+                .then(
+                    (result) => {
+                        res.send(result);
+                    }
+                )
+                .catch(
+                    (error) => {
+                        res.send(error);
+                    }
+                );
             //     }
             // });
         });
@@ -283,18 +283,18 @@ class UserController {
             //         res.send("forbidden");
             //     } else {
 
-                    let userId = req.params.userId;
-                    service.deleteUser(userId)
-                        .then(
-                            (result) => {
-                                res.send(result);
-                            }
-                        ).catch(
-                            (error) => {
-                                res.send(error);
-                            }
-                        );
-                // }
+            let userId = req.params.userId;
+            service.deleteUser(userId)
+                .then(
+                    (result) => {
+                        res.send(result);
+                    }
+                ).catch(
+                    (error) => {
+                        res.send(error);
+                    }
+                );
+            // }
             // });
         });
 

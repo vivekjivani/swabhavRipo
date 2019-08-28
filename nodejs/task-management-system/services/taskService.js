@@ -1,19 +1,17 @@
 const userModel = require('../schemas/usersSchema');
 
 class TaskService {
-    constructor() {
-    }
+    constructor() {}
 
     addTask(userId, taskData) {
         return new Promise((resolve, reject) => {
-            userModel.updateOne(
-                { _id: userId },
-                {
-                    $push: {
-                        Task: taskData
-                    }
+            userModel.updateOne({
+                _id: userId
+            }, {
+                $push: {
+                    Task: taskData
                 }
-            ).exec((error, response) => {
+            }).exec((error, response) => {
                 if (error) {
                     reject(error);
                 }
@@ -49,7 +47,16 @@ class TaskService {
 
     getTaskById(userId, taskId) {
         return new Promise((resolve, reject) => {
-            userModel.findOne({ _id: userId, 'Task._id': taskId }, { Task: { $elemMatch: { _id: taskId } } })
+            userModel.findOne({
+                    _id: userId,
+                    'Task._id': taskId
+                }, {
+                    Task: {
+                        $elemMatch: {
+                            _id: taskId
+                        }
+                    }
+                })
                 .select({
                     _id: 0,
                     'Task._id': 0,
@@ -70,11 +77,13 @@ class TaskService {
 
     editTask(taskId, taskData) {
         return new Promise((resolve, reject) => {
-            userModel.updateOne(
-                {
-                    Task: { $elemMatch: { _id: taskId } }
-                },
-                {
+            userModel.updateOne({
+                    Task: {
+                        $elemMatch: {
+                            _id: taskId
+                        }
+                    }
+                }, {
                     $set: {
                         'Task.$.title': taskData.title,
                         'Task.$.description': taskData.description,
@@ -85,8 +94,7 @@ class TaskService {
                         'Task.$.tags': taskData.tags,
                         'Task.$.isCompleted': taskData.isCompleted
                     }
-                }
-            )
+                })
                 .exec()
                 .then(
                     (response) => {
@@ -103,8 +111,16 @@ class TaskService {
 
     deleteTaskById(userId, taskId) {
         return new Promise((resolve, reject) => {
-            userModel.updateOne(
-                { '_id': userId, 'Task._id': taskId }, { $pull: { Task: { '_id': taskId } } })
+            userModel.updateOne({
+                    '_id': userId,
+                    'Task._id': taskId
+                }, {
+                    $pull: {
+                        Task: {
+                            '_id': taskId
+                        }
+                    }
+                })
                 .exec()
                 .then(
                     (response) => {

@@ -49,7 +49,7 @@ class TaskController {
     }
 
     routeHandler() {
-       
+
         /**
          * @swagger
          *  /api/v1/user/{userId}/tasks:
@@ -124,7 +124,7 @@ class TaskController {
                 );
         });
 
-         /**
+        /**
          * @swagger
          * /api/v1/user/{userId}/tasks/{taskId}:
          *   put:
@@ -170,7 +170,7 @@ class TaskController {
                 );
         });
 
-         /**
+        /**
          * @swagger
          * /api/v1/user/{userId}/tasks/{taskId}:
          *   get:
