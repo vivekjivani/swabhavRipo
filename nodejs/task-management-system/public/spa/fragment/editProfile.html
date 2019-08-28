@@ -1,0 +1,63 @@
+<div>
+    <style>
+        input[type="text"] {
+            width: 300px;
+            height: 30px;
+        }
+    </style>
+    <center>
+        <h2>Registration Form</h2>
+        <hr>
+        <form>
+            <table class="table table-bordered" style="width:500px;" cellpadding="10">
+                <tr>
+                    <td><label>userName :</label></td>
+                    <td><input type="text" ng-model="userData.userName"></td>
+                </tr>
+                <tr>
+                    <td><label>BOD : </label></td>
+                    <td><input type="date" ng-model="userData.birthDate"></td>
+                </tr>
+                <tr>
+                    <td><label>Gender : </label></td>
+                    <td>
+                        <input type="radio" name="gender" ng-model="userData.gender" value="Male" />Male
+                        <input type="radio" name="gender" ng-model="userData.gender" value="Female" />Female
+                        <input type="radio" name="gender" ng-model="userData.gender" value="Other" />others </td>
+                </tr>
+                <tr>
+                    <td><label>Contact No : </label></td>
+                    <td><input type="tel" ng-model="userData.phone"></td>
+                </tr>
+                <tr>
+                    <td><label>Email Id : </label></td>
+                    <td><input type="email" ng-model="userData.emailId"></td>
+                </tr>
+                <tr>
+                    <td><label>Password : </label></td>
+                    <td><input type="password" ng-model="userData.password"></td>
+                </tr>
+                <tr>
+                    <td><label>Street : </label></td>
+                    <td><input type="text" ng-model="userData.address.street" placeholder="Street"></td>
+                </tr>
+                <tr>
+                    <td><label>City : </label></td>
+                    <td><input type="text" ng-model="userData.address.city" placeholder="City"></td>
+                </tr>
+                <tr>
+                    <td><label>State : </label></td>
+                    <td><input type="text" ng-model="userData.address.state" placeholder="State"></td>
+                </tr>
+                <tr>
+                    <td><label>Country : </label></td>
+                    <td><input type="text" ng-model="userData.address.country" placeholder="Country"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="btn btn-default" ng-click="update()">Submit</button></td>
+                </tr>
+            </table>
+            <br>
+        </form>
+    </center>
+</div>

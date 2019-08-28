@@ -46,6 +46,22 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
+    service.updateUser =function(userId, userData){
+        return $q((resolve, reject) => {
+            var url = 'http://localhost:9090/api/v1/user/'+userId;
+            $http.put(url, userData)
+                .then(
+                    (response) => {
+                        resolve(response);
+                    }
+                ).catch(
+                    (error) => {
+                        reject(error);
+                    }
+                );
+        });
+    }
+
     service.addTask = function(userId, taskData){
         return $q((resolve, reject) => {
             var url = 'http://localhost:9090/api/v1/user/'+userId+'/tasks';
@@ -102,6 +118,23 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         return $q((resolve, reject) => {
             var url = 'http://localhost:9090/api/v1/user/'+userId+"/tasks/"+taskId+"/subTask";
             $http.post(url, subTaskData)
+                .then(
+                    (response) => {
+                        resolve(response);
+                    }
+                )
+                .catch(
+                    (error) => {
+                        reject(error);
+                    }
+                );
+        });
+    }
+
+    service.deleteSubTask = function(userId, taskId, subtaskId){
+        return $q((resolve, reject) => {
+            var url = 'http://localhost:9090/api/v1/user/'+userId+"/tasks/"+taskId+"/subTask/"+subtaskId;
+            $http.delete(url)
                 .then(
                     (response) => {
                         resolve(response);
