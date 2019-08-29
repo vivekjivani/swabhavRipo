@@ -1,60 +1,73 @@
 <div>
     <style>
-        input[type="text"] {
+        input[type="text"], input[type="date"], input[type="password"] {
             width: 300px;
             height: 30px;
         }
+        button{
+            width: 100px;
+            height: 40px;
+        }
     </style>
     <center>
-        <h2>Registration Form</h2>
+        <h2>Edit Profile</h2>
         <hr>
         <form>
-            <table class="table table-bordered" style="width:500px;" cellpadding="10">
+            <table class="table" style="width:500px;height: 600px;">
                 <tr>
-                    <td><label>userName :</label></td>
+                    <td><label>userName</label></td>
+                    <td>:</td>
                     <td><input type="text" ng-model="userData.userName"></td>
                 </tr>
                 <tr>
-                    <td><label>BOD : </label></td>
+                    <td><label>BOD</label></td>
+                    <td>:</td>                    
                     <td><input type="date" ng-model="userData.birthDate"></td>
                 </tr>
                 <tr>
-                    <td><label>Gender : </label></td>
+                    <td><label>Gender</label></td>
+                    <td>:</td>                    
                     <td>
                         <input type="radio" name="gender" ng-model="userData.gender" value="Male" />Male
                         <input type="radio" name="gender" ng-model="userData.gender" value="Female" />Female
                         <input type="radio" name="gender" ng-model="userData.gender" value="Other" />others </td>
                 </tr>
                 <tr>
-                    <td><label>Contact No : </label></td>
+                    <td><label>Contact No</label></td>
+                    <td>:</td>
                     <td><input type="tel" ng-model="userData.phone"></td>
                 </tr>
                 <tr>
-                    <td><label>Email Id : </label></td>
+                    <td><label>Email Id</label></td>
+                    <td>:</td>
                     <td><input type="email" ng-model="userData.emailId"></td>
                 </tr>
                 <tr>
-                    <td><label>Password : </label></td>
-                    <td><input type="password" ng-model="userData.password"></td>
-                </tr>
-                <tr>
-                    <td><label>Street : </label></td>
+                    <td><label>Street</label></td>
+                    <td>:</td>
                     <td><input type="text" ng-model="userData.address.street" placeholder="Street"></td>
                 </tr>
                 <tr>
-                    <td><label>City : </label></td>
+                    <td><label>City</label></td>
+                    <td>:</td>
                     <td><input type="text" ng-model="userData.address.city" placeholder="City"></td>
                 </tr>
                 <tr>
-                    <td><label>State : </label></td>
+                    <td><label>State</label></td>
+                    <td>:</td>
                     <td><input type="text" ng-model="userData.address.state" placeholder="State"></td>
                 </tr>
                 <tr>
-                    <td><label>Country : </label></td>
+                    <td><label>Country</label></td>
+                    <td>:</td>
                     <td><input type="text" ng-model="userData.address.country" placeholder="Country"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button class="btn btn-default" ng-click="update()">Submit</button></td>
+                    <td colspan="3">
+                        <button class="btn btn-default" ng-click="submit()">Submit</button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-default" ng-click="">Cancel</button>
+                    </td>
                 </tr>
             </table>
             <br>

@@ -28,7 +28,7 @@ app.config(function ($routeProvider) {
         })
         .when("/editProfile", {
             templateUrl: "./fragment/editProfile.html",
-            controller: "UserProfileController"
+            controller: "EditUserProfileController"
         })
         .when("/refresher", {
             templateUrl: "./fragment/refresher.html",
@@ -97,37 +97,6 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
 
     $scope.edit = function () {
         $location.path("/editProfile");
-    }
-
-    $scope.userData = {
-        userName: "",
-        gender: "",
-        birthDate: "",
-        phone: "",
-        emailId: "",
-        address: {
-            street: "",
-            city: "",
-            state: "",
-            country: "",
-        },
-        password: ""
-    };
-
-    $scope.update = function () {
-        // console.log($scope.userData);
-        TaskFactory.updateUser($scope.userId, $scope.userData)
-            .then(
-                (result) => {
-                    // console.log(result);
-                    $location.path('/refresher');
-                }
-            )
-            .catch(
-                (error) => {
-                    console.log(error);
-                }
-            );
     }
     $scope.addTask = function () {
         $location.path('/addTask');
@@ -270,6 +239,39 @@ app.controller("AddSubTaskController", ['$scope', '$location', '$window', 'TaskF
                 (result) => {
                     console.log(result);
                     $location.path("/subTask");
+                }
+            )
+            .catch(
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
+}]);
+
+app.controller('EditUserProfileController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+    $scope.userData = {
+        userName: "",
+        gender: "",
+        birthDate: "",
+        phone: "",
+        emailId: "",
+        address: {
+            street: "",
+            city: "",
+            state: "",
+            country: ""
+        }
+    }
+    $scope.submit = function () {
+        // console.log($scope.userData);
+        $scope.userId = $window.sessionStorage.userId;
+        // console.log($scope.userId);
+        TaskFactory.updateUser($scope.userId, $scope.userData)
+            .then(
+                (result) => {
+                    console.log(result);
+                    $location.path('/refresher');
                 }
             )
             .catch(
