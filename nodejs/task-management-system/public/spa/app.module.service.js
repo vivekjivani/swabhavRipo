@@ -79,6 +79,23 @@ taskService.factory('TaskFactory', ['$q', '$http', function ($q, $http) {
         });
     }
 
+    service.updateTask = function (userId, taskId, taskData){
+        return $q((resolve, reject) => {
+            var url='/api/v1/user/'+userId+'/tasks/'+taskId;
+            $http.put(url, taskData)
+                .then(
+                    (response) => {
+                        resolve(response);
+                    }
+                )
+                .catch(
+                    (error) => {
+                        reject(error);
+                    }
+                )
+        });
+    }
+
     service.getAllSubtask = function (userId, taskId) {
         return $q((resolve, reject) => {
             // console.log(userId, taskId);

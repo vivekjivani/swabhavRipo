@@ -30,6 +30,10 @@ app.config(function ($routeProvider) {
             templateUrl: "./fragment/editProfile.html",
             controller: "EditUserProfileController"
         })
+        .when("/editTask", {
+            templateUrl: "./fragment/editTask.html",
+            controller: "EditTaskController"
+        })
         .when("/refresher", {
             templateUrl: "./fragment/refresher.html",
             controller: "RefresherController"
@@ -95,8 +99,13 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
             }
         );
 
-    $scope.edit = function () {
+    $scope.editProfile = function () {
         $location.path("/editProfile");
+    }
+
+    $scope.editTask = function(taskId){
+        $window.sessionStorage.taskId = taskId;
+        $location.path("/editTask");
     }
     $scope.addTask = function () {
         $location.path('/addTask');
@@ -125,6 +134,33 @@ app.controller('UserProfileController', ['$scope', '$location', '$window', 'Task
         $window.sessionStorage.user = null;
         $window.sessionStorage.userId = null;
         $location.path('/');
+    }
+}]);
+
+app.controller('EditTaskController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+    $scope.taskData = {
+        title: "",
+        description: "",
+        startDate: "",
+        dueDate: "",
+        assignee: ""
+    }
+
+    $scope.submit = function(){
+        $scope.userId = $window.sessionStorage.userId;
+        $scope.taskId = $window.sessionStorage.taskId;
+        // console.log($scope.userId, $scope.taskId);
+        TaskFactory.updateTask($scope.userId, $scope.taskId, $scope.taskData)
+            .then(
+                (result) => {
+                    $location.path('/userProfile');
+                    console.log(result);
+                }
+            ).catch(
+                (error) => {
+                    console.log(error);
+                }
+            );
     }
 }]);
 
@@ -279,6 +315,9 @@ app.controller('EditUserProfileController', ['$scope', '$location', '$window', '
                     console.log(error);
                 }
             );
+    }
+    $scope.goBack = function() {
+        $location.path('/userProfile');
     }
 }]);
 

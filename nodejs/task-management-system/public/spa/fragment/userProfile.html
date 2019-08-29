@@ -5,7 +5,7 @@
         </div>
         <hr/>
         <div style="display: inline-block">
-            <button class="btn btn-default" ng-click="edit()">Edit Profile</button>
+            <button class="btn btn-default" ng-click="editProfile()">Edit Profile</button>
             <button class="btn btn-default" ng-click="addTask()">Add Task</button>
         </div>
         <div style="display: inline-block">
@@ -26,7 +26,7 @@
                     <p>{{ task.assignee }}</p>
                     <div>
                         <button class="btn btn-default" ng-click="displaySubTasks(task._id)">Sub-tasks</button>
-                        <button class="btn btn-default" ng-click="">Edit</button>
+                        <button class="btn btn-default" ng-click="editTask(task._id)">Edit</button>
                         <button class="btn btn-default" ng-click="deleteTask(task._id)">Delete</button>
                     </div>
             </div>
