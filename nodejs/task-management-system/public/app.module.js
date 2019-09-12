@@ -34,6 +34,10 @@ app.config(function ($routeProvider) {
             templateUrl: "./fragment/editTask.html",
             controller: "EditTaskController"
         })
+        .when("/editSubtask", {
+            templateUrl: "./fragment/editSubtask.html",
+            controller: "EditSubtaskController"
+        })
         .when("/refresher", {
             templateUrl: "./fragment/refresher.html",
             controller: "RefresherController"
@@ -163,6 +167,34 @@ app.controller('EditTaskController', ['$scope', '$location', '$window', 'TaskFac
             );
     }
 }]);
+
+app.controller('EditSubtaskController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
+    $scope.subtaskData = {
+        title: "",
+        description: "",
+        startDate: "",
+        dueDate: "",
+        assignee: ""
+    }
+
+    $scope.submit = function(){
+        $scope.userId = $window.sessionStorage.userId;
+        $scope.taskId = $window.sessionStorage.taskId;
+        console.log($scope.userId, $scope.taskId);
+        // TaskFactory.updateTask($scope.userId, $scope.taskId, $scope.taskData)
+        //     .then(
+        //         (result) => {
+        //             $location.path('/userProfile');
+        //             console.log(result);
+        //         }
+        //     ).catch(
+        //         (error) => {
+        //             console.log(error);
+        //         }
+        //     );
+    }
+}]);
+
 
 app.controller('SubTaskController', ['$scope', '$location', '$window', 'TaskFactory', function ($scope, $location, $window, TaskFactory) {
     $scope.userId = $window.sessionStorage.userId;

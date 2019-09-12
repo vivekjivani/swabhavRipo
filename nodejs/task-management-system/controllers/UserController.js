@@ -120,7 +120,7 @@ class UserController {
                         // }, 'eliover', (err, token) => {
                         //     res.json({
                         //         token,
-                        //         result
+                        //         result   
                         //     });
                         // });
                     }
